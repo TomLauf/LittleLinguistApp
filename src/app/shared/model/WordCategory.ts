@@ -16,5 +16,3 @@ export class WordCategory{
       this.TranslatedLanguage = TranslatedLanguage;
     }
   }
-
-  

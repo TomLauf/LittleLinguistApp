@@ -24,16 +24,16 @@ export class CategoryFormComponent implements OnInit {
   currentCategory: WordCategory = new WordCategory(0, "", Language.English, Language.Hebrew);
 
   constructor(private CategoryManagementService: CategoryManagementService, private router: ActivatedRoute) {
-      let id = this.router.snapshot.paramMap.get('CategoryId');
+    let id = this.router.snapshot.paramMap.get('CategoryId');
 
-      // Edit mode
-      if (id !=null){
-          let idAsNumber = parseInt(id);
-          let category = CategoryManagementService.get(idAsNumber);
-          if (category != null){
-            this.currentCategory = category;
-          }
+    // Edit mode
+    if (id != null) {
+      let idAsNumber = parseInt(id);
+      let category = CategoryManagementService.get(idAsNumber);
+      if (category != null) {
+        this.currentCategory = category;
       }
+    }
   }
 
   ngOnInit(): void {
@@ -49,5 +49,9 @@ export class CategoryFormComponent implements OnInit {
 
   addWordsPairToCategory() {
     this.currentCategory.Words.push(new WordsPair("", ""));
+  }
+
+  deleteWordsPairToCategory(wordsPair: WordsPair) {
+    this.currentCategory.Words = this.currentCategory.Words.filter(wp => wp != wordsPair);
   }
 }

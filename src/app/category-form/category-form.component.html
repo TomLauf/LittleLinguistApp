@@ -2,7 +2,8 @@
   <div>
     <mat-form-field appearance="outline">
       <mat-label>Category Name</mat-label>
-      <input matInput name="CategoryName" [(ngModel)]="currentCategory.CategoryName" required #CategoryNameField="ngModel">
+      <input matInput name="CategoryName" [(ngModel)]="currentCategory.CategoryName" required
+        #CategoryNameField="ngModel">
       <mat-error *ngIf="CategoryNameField.invalid">Category Name is required</mat-error>
     </mat-form-field>
   </div>
@@ -19,7 +20,8 @@
     </mat-form-field>
   </div>
   <div>Words:
-    <button mat-stroked-button type="button" (click)="addWordsPairToCategory()"><mat-icon>add_circle_outline</mat-icon>New Word</button>
+    <button mat-stroked-button type="button"
+      (click)="addWordsPairToCategory()"><mat-icon>add_circle_outline</mat-icon>New Word</button>
   </div>
   <div *ngFor="let wordsPair of currentCategory.Words;">
     <mat-form-field appearance="outline">
@@ -32,9 +34,10 @@
       <input matInput name="TranslatedWord" [(ngModel)]="wordsPair.Translated" required #TranslatedWordField="ngModel">
       <mat-error *ngIf="TranslatedWordField.invalid">Translated word must be in Hebrew</mat-error>
     </mat-form-field>
+    <button mat-stroked-button type="button" (click)="deleteWordsPairToCategory(wordsPair)"><mat-icon>delete</mat-icon></button>
   </div>
-  
   <div>
-    <button mat-stroked-button type="submit" [disabled]="categoryForm.invalid"><mat-icon>save_alt</mat-icon>Save</button>
-  </div> 
+    <button mat-stroked-button type="submit"
+      [disabled]="categoryForm.invalid"><mat-icon>save_alt</mat-icon>Save</button>
+  </div>
 </form>
