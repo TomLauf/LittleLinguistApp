@@ -1,0 +1,27 @@
+mat-toolbar{
+  background-color: #ADD8E6;
+}
+
+.toolbar-icon{
+  color:floralwhite;
+  cursor: pointer;
+}
+
+.toolbar-icon:hover{
+  color: #043959;
+}
+
+#toolbar-user-icon{
+  position: absolute;
+  right: 35px;
+}
+
+.app-name{
+  font-family: 'Trebuchet MS', sans-serif;
+  font-size: 30px;
+  font-weight: bold;
+  color: #043959;
+  cursor: default;
+  position: absolute;
+  left: 80px;
+}

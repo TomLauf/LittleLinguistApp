@@ -1,0 +1,72 @@
+table {
+  font-family: 'Trebuchet MS', sans-serif;
+  cursor: default; 
+  box-shadow: none;
+  border-radius: 8px;
+  overflow:hidden;
+  background-color:transparent;
+  border-spacing: 0 10px; 
+}
+
+
+
+/* table th{
+  font-size: 20px;
+  color: floralwhite;
+  background-color:#043959;
+  text-align: center; 
+}
+
+th, td{
+  text-align: center; 
+}
+
+.inTr{
+  color:#043959;
+  margin-bottom: 8px;
+  border: none;
+}
+
+.inTr:hover{
+  background-color: #ebfaff;
+  opacity: 80%;
+}
+
+.table-icon{
+  color: #043959;
+} */
+
+#addCategory {
+font-family: 'Trebuchet MS', sans-serif;
+vertical-align: middle;
+margin: 10px;
+padding: 15px 30px;
+text-align: center;
+transition: 0.5s;
+background-size: 200% auto;
+color: white;
+border-radius: 10px;
+display: inline-block;
+border: 0px;
+box-shadow: 0px 0px 14px -7px #f09819;
+background-image: linear-gradient(45deg, #FF512F 0%, #F09819  51%, #FF512F  100%);
+cursor: pointer;
+user-select: none;
+-webkit-user-select: none;
+touch-action: manipulation;
+}
+
+#addIcon{
+vertical-align: middle;
+margin-right: 5px;
+}
+
+#addCategory:hover {
+background-position: right center;
+color: #fff;
+text-decoration: none;
+}
+
+#addCategory:active {
+transform: scale(0.95);
+}
