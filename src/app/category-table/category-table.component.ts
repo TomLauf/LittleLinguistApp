@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -6,8 +6,8 @@ import { MatTableModule } from '@angular/material/table';
 import { WordCategory } from '../shared/model/WordCategory';
 import { RouterModule } from '@angular/router';
 import { CategoryManagementService } from '../Services/category-management.service';
-import { Language } from '../shared/model/Language';
-
+import { MatDialog } from '@angular/material/dialog';
+import { DeleteCategoryDialogComponent } from '../delete-category-dialog/delete-category-dialog.component';
 
 @Component({
   selector: 'app-category-table',
@@ -21,12 +21,19 @@ export class CategoryTableComponent {
   displayedColumns: string[] = ['CategoryName', 'NumOfWords', 'LastUpdate', 'Actions'];
   dataSource: WordCategory[] = [];
 
-  constructor(private categoryManagementService: CategoryManagementService) {
+
+  constructor(private categoryManagementService: CategoryManagementService, private dialog: MatDialog) {
     this.dataSource = this.categoryManagementService.list();
   }
 
   deleteCategory(categoryId: number): void {
-    this.categoryManagementService.delete(categoryId);
-    this.dataSource = this.categoryManagementService.list();
+    const dialogRef = this.dialog.open(DeleteCategoryDialogComponent, { data: categoryId });
+
+    dialogRef.afterClosed().subscribe(deleteConfirmed => {
+      if (deleteConfirmed) {
+        this.categoryManagementService.delete(categoryId);
+        this.dataSource = this.categoryManagementService.list();
+      }
+    });
   }
 }

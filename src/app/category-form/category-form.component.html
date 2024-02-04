@@ -1,3 +1,6 @@
+<div>
+  <h2>Category</h2>
+</div>
 <form #categoryForm="ngForm">
   <div>
     <mat-form-field appearance="outline">
@@ -23,21 +26,22 @@
     <button mat-stroked-button type="button"
       (click)="addWordsPairToCategory()"><mat-icon>add_circle_outline</mat-icon>New Word</button>
   </div>
+  <br>
   <div *ngFor="let wordsPair of currentCategory.Words;">
     <mat-form-field appearance="outline">
       <mat-label>Word in English</mat-label>
-      <input matInput name="OriginWord" [(ngModel)]="wordsPair.Origin" required #OriginWordField="ngModel">
+      <input matInput name="OriginWord{{wordsPair.Origin}}" [(ngModel)]="wordsPair.Origin" pattern="[A-Za-z\s]+" required #OriginWordField="ngModel">
       <mat-error *ngIf="OriginWordField.invalid">Origin word must be in English</mat-error>
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>Word in Hebrew</mat-label>
-      <input matInput name="TranslatedWord" [(ngModel)]="wordsPair.Translated" required #TranslatedWordField="ngModel">
+      <input matInput name="TranslatedWord{{wordsPair.Translated}}" [(ngModel)]="wordsPair.Translated" pattern="[א-ת\s]+" required #TranslatedWordField="ngModel">
       <mat-error *ngIf="TranslatedWordField.invalid">Translated word must be in Hebrew</mat-error>
     </mat-form-field>
-    <button mat-stroked-button type="button" (click)="deleteWordsPairToCategory(wordsPair)"><mat-icon>delete</mat-icon></button>
+    <mat-icon (click)="deleteWordsPairToCategory(wordsPair)">delete</mat-icon>
   </div>
   <div>
-    <button mat-stroked-button type="submit"
+    <button mat-stroked-button type="submit" (click)="saveCategory()"
       [disabled]="categoryForm.invalid"><mat-icon>save_alt</mat-icon>Save</button>
   </div>
 </form>

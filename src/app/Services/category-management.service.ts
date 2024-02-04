@@ -36,9 +36,8 @@ export class CategoryManagementService {
 
   add(newCategory: WordCategory) {
     newCategory.CategoryId = this.nextId;
+    newCategory.LastUpdate = new Date();
     this.categories.set(this.nextId, newCategory);
     this.nextId++
-    newCategory.LastUpdate = new Date();
   }
-
 }

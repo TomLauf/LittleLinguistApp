@@ -8,34 +8,6 @@ table {
   border-spacing: 0 10px; 
 }
 
-
-
-/* table th{
-  font-size: 20px;
-  color: floralwhite;
-  background-color:#043959;
-  text-align: center; 
-}
-
-th, td{
-  text-align: center; 
-}
-
-.inTr{
-  color:#043959;
-  margin-bottom: 8px;
-  border: none;
-}
-
-.inTr:hover{
-  background-color: #ebfaff;
-  opacity: 80%;
-}
-
-.table-icon{
-  color: #043959;
-} */
-
 #addCategory {
 font-family: 'Trebuchet MS', sans-serif;
 vertical-align: middle;
