@@ -1,0 +1,10 @@
+<h1>Let's Play!</h1>
+
+<mat-form-field>
+    <mat-label>Favorite food</mat-label>
+    <mat-select>
+      @for (category of categories; track category) {
+        <mat-option [value]="category.CategoryId">{{category.CategoryName}}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
