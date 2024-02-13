@@ -1,10 +1,14 @@
 <h1>Let's Play!</h1>
 
 <mat-form-field>
-    <mat-label>Favorite food</mat-label>
-    <mat-select>
-      @for (category of categories; track category) {
-        <mat-option [value]="category.CategoryId">{{category.CategoryName}}</mat-option>
-      }
+    <mat-label>Select Category</mat-label>
+    <mat-select [(value)]="selectedCategory">
+        @for (category of categories; track category) {
+        <mat-option [value]="category">{{category.CategoryName}}</mat-option>
+        }
     </mat-select>
-  </mat-form-field>
+</mat-form-field>
+
+<div>
+    <button mat-stroked-button [routerLink]="['/translateGame/', selectedCategory.CategoryId]">Play</button>
+</div>

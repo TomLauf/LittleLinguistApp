@@ -25,10 +25,8 @@ export class CategoryFormComponent {
   constructor(private categoryManagementService: CategoryManagementService, private activatedRoute: ActivatedRoute, private router: Router) {
     let id = this.activatedRoute.snapshot.paramMap.get('CategoryId');
 
-    // Edit mode
     if (id != null) {
-      let idAsNumber = parseInt(id);
-      let category = this.categoryManagementService.get(idAsNumber);
+      let category = this.categoryManagementService.get(parseInt(id));
       if (category != null) {
         this.currentCategory = category;
       }
