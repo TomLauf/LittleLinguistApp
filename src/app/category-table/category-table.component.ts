@@ -26,12 +26,12 @@ export class CategoryTableComponent {
     this.dataSource = this.categoryManagementService.list();
   }
 
-  deleteCategory(categoryId: number): void {
-    const dialogRef = this.dialog.open(DeleteCategoryDialogComponent, { data: categoryId });
+  deleteCategory(category: WordCategory): void {
+    const dialogRef = this.dialog.open(DeleteCategoryDialogComponent, { data: category });
 
     dialogRef.afterClosed().subscribe(deleteConfirmed => {
       if (deleteConfirmed) {
-        this.categoryManagementService.delete(categoryId);
+        this.categoryManagementService.delete(category.CategoryId);
         this.dataSource = this.categoryManagementService.list();
       }
     });

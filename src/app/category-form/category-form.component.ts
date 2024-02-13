@@ -50,8 +50,11 @@ export class CategoryFormComponent {
     }
     if(this.currentCategory.CategoryId == 0){
       this.categoryManagementService.add(this.currentCategory);
+      console.log("add", this.currentCategory);
     }else{
       this.categoryManagementService.update(this.currentCategory);
+      console.log("update", this.currentCategory);
+
     }
     this.router.navigate(["/"]);
   }

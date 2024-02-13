@@ -11,5 +11,4 @@ import { MatTooltipModule } from '@angular/material/tooltip';
   styleUrl: './footer.component.css'
 })
 export class FooterComponent {
-
 }

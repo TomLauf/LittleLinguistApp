@@ -19,7 +19,7 @@
     <th mat-header-cell *matHeaderCellDef> Actions </th>
     <td mat-cell *matCellDef="let element"> {{element.Actions}}
       <button mat-icon-button [routerLink]="['/Category/', element.CategoryId]"><mat-icon>edit</mat-icon></button>
-      <button mat-icon-button (click)="deleteCategory(element.CategoryId)"><mat-icon>delete</mat-icon></button>
+      <button mat-icon-button (click)="deleteCategory(element)"><mat-icon>delete</mat-icon></button>
      </td>
   </ng-container>
 
