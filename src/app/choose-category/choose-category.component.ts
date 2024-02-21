@@ -6,11 +6,12 @@ import { CategoryManagementService } from '../Services/category-management.servi
 import { WordCategory } from '../shared/model/WordCategory';
 import { RouterModule } from '@angular/router';
 import { Language } from '../shared/model/Language';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-choose-category',
   standalone: true,
-  imports: [MatFormFieldModule, MatOptionModule, MatSelectModule, RouterModule],
+  imports: [MatFormFieldModule, MatOptionModule, MatSelectModule, RouterModule,MatButtonModule],
   templateUrl: './choose-category.component.html',
   styleUrl: './choose-category.component.css'
 })

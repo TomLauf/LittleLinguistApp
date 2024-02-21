@@ -1,14 +1,17 @@
-<h1>Let's Play!</h1>
+<div class="choose-category">
 
-<mat-form-field>
-    <mat-label>Select Category</mat-label>
-    <mat-select [(value)]="selectedCategory">
-        @for (category of categories; track category) {
-        <mat-option [value]="category">{{category.CategoryName}}</mat-option>
-        }
-    </mat-select>
-</mat-form-field>
+    <h1>Choose a category and let's Play!</h1>
 
-<div>
-    <button mat-stroked-button [routerLink]="['/translateGame/', selectedCategory.CategoryId]">Play</button>
+    <mat-form-field>
+        <mat-label>Select Category</mat-label>
+        <mat-select [(value)]="selectedCategory">
+            @for (category of categories; track category) {
+            <mat-option [value]="category">{{category.CategoryName}}</mat-option>
+            }
+        </mat-select>
+    </mat-form-field>
+
+    <div>
+        <button mat-stroked-button [disabled]="!selectedCategory.CategoryId" [routerLink]="['/translateGame/', selectedCategory.CategoryId]">Play</button>
+    </div>
 </div>

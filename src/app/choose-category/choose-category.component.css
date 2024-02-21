@@ -1,0 +1,10 @@
+.choose-category {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center vertically */
+    align-items: center; /* Center horizontally */
+}
+
+.choose-category h1 {
+    margin-bottom: 20px; /* Add some spacing below the heading */
+}

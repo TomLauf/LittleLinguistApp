@@ -1,0 +1,29 @@
+
+td, th {
+    text-align: center;
+  }
+.buttonNmsg-container {
+    text-align: center;
+    width: 100%;
+    margin-top: 20px; 
+}
+
+.checkTranslateGame {
+    display: inline-block;
+    width: 20%;
+    background-color:#ADD8E6;
+    
+}
+
+.checkTranslateGame:hover{
+    color: #043959; 
+}
+
+.trueAns{
+    color:MediumSeaGreen;
+}
+.wrongAns{
+    color:Tomato;
+}
+
+

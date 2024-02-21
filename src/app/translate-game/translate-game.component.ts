@@ -26,6 +26,8 @@ export class TranslateGameComponent implements OnInit {
   dataSource: any[] = [];
   displayedColumns: string[] = ['EnglishWord', 'HebrewTranslation', 'CheckAnswer', 'Translated']
   userAnswerMessage: string = "";
+  showTranslation: boolean = false;
+
   constructor(private categoryManagementService: CategoryManagementService, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -67,5 +69,13 @@ export class TranslateGameComponent implements OnInit {
     else {
       this.userAnswerMessage = "You translated " + numOfRightAns + " out of " + this.dataSource.length + " words correctly, try again";
     }
+  }
+
+  onShowTranslation() {
+    this.showTranslation = true;
+  }
+
+  onHideTranslation() {
+    this.showTranslation = false;
   }
 }

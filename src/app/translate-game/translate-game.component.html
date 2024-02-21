@@ -18,7 +18,6 @@
         <th mat-header-cell *matHeaderCellDef> Hebrew Translation </th>
         <td mat-cell *matCellDef="let element">
             <mat-form-field appearance="outline">
-                <mat-label>Word in Hebrew</mat-label>
                 <input matInput [(ngModel)]="element.UserAnswerTry" pattern="[א-ת\s]+" required
                     #TranslatedWordField="ngModel">
                 <mat-error *ngIf="TranslatedWordField.invalid">Translated word must be in Hebrew</mat-error>
@@ -27,21 +26,31 @@
     </ng-container>
 
     <ng-container matColumnDef="CheckAnswer">
-        <th mat-header-cell *matHeaderCellDef> Check Answer </th>
+        <th mat-header-cell *matHeaderCellDef> Results </th>
         <td mat-cell *matCellDef="let element">
-        <p *ngIf="element.AnswerIsRight == false">X</p>
-        <p *ngIf="element.AnswerIsRight == true">V</p>
+            <p *ngIf="element.AnswerIsRight == false"><mat-icon class="wrongAns">mood_bad</mat-icon></p>
+            <p *ngIf="element.AnswerIsRight == true"><mat-icon class="trueAns">mood</mat-icon></p>
         </td>
     </ng-container>
 
     <ng-container matColumnDef="Translated">
-        <th mat-header-cell *matHeaderCellDef> Trasnlated </th>
-        <td mat-cell *matCellDef="let element" style="visibility: hidden;">{{element.Translated}}</td>
+        <th mat-header-cell *matHeaderCellDef> 
+            <button mat-button (mousedown)="onShowTranslation()" (mouseup)="onHideTranslation()">Show
+                Translation<mat-icon>visibility</mat-icon></button>
+        </th>
+        <td mat-cell *matCellDef="let element">
+            <p *ngIf="showTranslation">
+                {{element.Translated}}
+            </p>
+        </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
 
-<button mat-button (click)="checkUserAnswers()">Check</button>
-<p>{{userAnswerMessage}}</p>
+<div class="buttonNmsg-container">
+    <button class="checkTranslateGame" mat-stroked-button (click)="checkUserAnswers()">Check</button>
+    <p>{{userAnswerMessage}}</p>
+</div>
+
