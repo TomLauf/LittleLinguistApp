@@ -1,1 +1,18 @@
-<p>choose-game works!</p>
+  <div class="cards-container">
+    <mat-card appearance="outlined" *ngFor="let game of games" routerLink="['/' + game.GameURL]">
+        <mat-card-header>{{ game.GameName }}</mat-card-header>
+        <mat-card-content>{{ game.GameDescription }}</mat-card-content>
+      </mat-card>
+  </div>
+  
+
+  <!-- <div>
+    <div *ngFor="let game of games">
+      <a [routerLink]="['/' + game.GameURL]" style="text-decoration: none;">
+        <mat-card appearance="outlined">
+          <mat-card-header>{{ game.name }}</mat-card-header>
+          <mat-card-content>{{ game.description }}</mat-card-content>
+        </mat-card>
+      </a>
+    </div>
+  </div> -->

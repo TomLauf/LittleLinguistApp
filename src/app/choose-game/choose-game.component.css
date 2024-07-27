@@ -1,0 +1,14 @@
+.cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px; /* Adjust the gap size as needed */
+  }
+
+mat-card-header{
+    font-weight: bold;
+}
+
+mat-card-content{
+    text-decoration: underline;
+}
+
