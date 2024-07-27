@@ -16,8 +16,8 @@ export const routes: Routes = [
     { path: "help", component: HelpComponent },
     { path: "newCategory", component: CategoryFormComponent },
     { path: "Category/:CategoryId", component: CategoryFormComponent },
-    { path: "MixedWordsGame", component: MixedWordsGameComponent },
-    { path: "SortGame", component: SortGameComponent },
+    { path: "MixedWordsGame/:CategoryId", component: MixedWordsGameComponent },
+    { path: "SortGame/:CategoryId", component: SortGameComponent },
     { path: "translateGame/:CategoryId", component: TranslateGameComponent }, //old
-    { path: "chooseCategory", component: ChooseCategoryComponent } //old
+    { path: "chooseCategory/:CategoryId", component: ChooseCategoryComponent } //old
 ];
