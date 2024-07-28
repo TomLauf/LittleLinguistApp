@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { GameProfile } from '../shared/model/GameProfile';
+import { ActivatedRoute } from '@angular/router';
+import { WordCategory } from '../shared/model/WordCategory';
  
 @Injectable({
   providedIn: 'root',
@@ -9,7 +11,7 @@ export class GamesInfoService {
     new GameProfile(
       1,
       'Translate Game',
-      'Translate words and phrases from a foreign language to English.',
+      'Translate words and phrases from Hebrew to English.',
       'translateGame'
     ),
     new GameProfile(
@@ -33,8 +35,9 @@ export class GamesInfoService {
   ];
 
   constructor() {}
-  
+
   list(): GameProfile[] {
     return this.games;
   }
+
 }

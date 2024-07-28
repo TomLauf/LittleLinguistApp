@@ -38,7 +38,6 @@ export class TranslateGameComponent implements OnInit {
         this.currentCategory = category;
         for (let index = 0; index < category.Words.length; index++) {
           const wordsPair = category.Words[index];
-
           this.dataSource.push({
             Origin: wordsPair.Origin,
             Translated: wordsPair.Translated,

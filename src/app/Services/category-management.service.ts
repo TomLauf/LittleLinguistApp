@@ -55,7 +55,7 @@ export class CategoryManagementService {
         let category = this.get(index);
         categories.push(category);
       } catch {
-        console.log("ERROR: Word Category Id " + index + " Not Found");
+        // console.log("ERROR: Word Category Id " + index + " Not Found");
       }
     } return categories;
   }

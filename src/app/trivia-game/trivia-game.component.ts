@@ -1,16 +1,16 @@
 import { Component } from '@angular/core';
-import { WordCategory } from '../shared/model/WordCategory';
 import { ActivatedRoute } from '@angular/router';
 import { CategoryManagementService } from '../Services/category-management.service';
+import { WordCategory } from '../shared/model/WordCategory';
 
 @Component({
-  selector: 'app-mixed-words-game',
+  selector: 'app-trivia-game',
   standalone: true,
   imports: [],
-  templateUrl: './mixed-words-game.component.html',
-  styleUrl: './mixed-words-game.component.css'
+  templateUrl: './trivia-game.component.html',
+  styleUrl: './trivia-game.component.css'
 })
-export class MixedWordsGameComponent {
+export class TriviaGameComponent {
 
   category: WordCategory | undefined;
 
