@@ -1,29 +1,14 @@
-<!-- <div mat-dialog-content>
+<div mat-dialog-content class="dialog">
     Choose Category to Play:
-    <mat-form-field>
-        <mat-label>Select</mat-label>
-        <mat-select>
-          <mat-option *ngFor="let category of categories" value={{category.CategoryId}}>{{category.CategoryName}}</mat-option>
-        </mat-select>
-      </mat-form-field>
-    
-    {{ category.CategoryName }}?
-</div>
-<div mat-dialog-actions>
-    <button mat-button mat-dialog-close cdkFocusInitial [mat-dialog-close]="true">Play</button>
-    <button mat-button mat-dialog-close [mat-dialog-close]="false">Cancel</button>
-</div> -->
-
-<div mat-dialog-content>
-    Choose Category to Play:
+    <br>
     <mat-form-field>
       <mat-select [(value)]="selectedCategory" required>
         <mat-option *ngFor="let category of categories" [value]="category">{{ category.CategoryName }}</mat-option>
       </mat-select>
     </mat-form-field>
-    <p *ngIf="this.selectedCategory != undefined">{{selectedCategory.Words.length}}</p>
-    <p *ngIf="this.selectedCategory != undefined">{{selectedCategory.LastUpdate | date:'dd/MM/yyyy'}}</p>
+    <p *ngIf="this.selectedCategory != undefined">{{selectedCategory.Words.length}} words</p>
+    <p *ngIf="this.selectedCategory != undefined">Last update:{{selectedCategory.LastUpdate | date:'dd/MM/yyyy'}}</p>
   </div>
   <div mat-dialog-actions>
-    <button mat-button mat-dialog-close cdkFocusInitial [mat-dialog-close]="true" (click)="playGame()">Play</button>
+    <button mat-button mat-dialog-close cdkFocusInitial [mat-dialog-close]="true" (click)="playGame()" [disabled]="!selectedCategory">Play</button>
   </div>

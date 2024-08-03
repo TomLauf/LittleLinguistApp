@@ -14,19 +14,11 @@ import { ChooseCategoryDialogComponent } from '../choose-category-dialog/choose-
   templateUrl: './choose-game.component.html',
   styleUrl: './choose-game.component.css'
 })
-// export class ChooseGameComponent {
-//   private games: GameProfile[] = [];
-// }
-
-// constructor(private GamesInfoService: GamesInfoService) {
-//   this.games = GamesInfoService.list()
-// }
-
 
 export class ChooseGameComponent implements OnInit {
   public games: GameProfile[] = [];
 
-  constructor(private gamesInfoService: GamesInfoService, private dialog: MatDialog) { // Fixed naming convention: GamesInfoService -> gamesInfoService
+  constructor(private gamesInfoService: GamesInfoService, private dialog: MatDialog) {
   }
 
   ngOnInit(): void { 
