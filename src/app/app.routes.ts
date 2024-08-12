@@ -19,7 +19,7 @@ export const routes: Routes = [
     { path: "Category/:CategoryId", component: CategoryFormComponent },
     { path: "MixedWordsGame/:CategoryId", component: MixedWordsGameComponent },
     { path: "SortGame/:CategoryId", component: SortGameComponent },
-    { path: "translateGame/:CategoryId", component: TranslateGameComponent },//old
+    { path: "TranslateGame/:CategoryId", component: TranslateGameComponent },//old
     { path: "TriviaGame/:CategoryId", component: TriviaGameComponent }, 
     { path: "chooseCategory/:CategoryId", component: ChooseCategoryComponent }, //old
 ];

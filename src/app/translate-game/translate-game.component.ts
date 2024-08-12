@@ -10,13 +10,14 @@ import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
+import { GameHeaderComponent } from "../game-header/game-header.component";
 
 
 @Component({
   selector: 'app-translate-game',
   standalone: true,
   imports: [MatFormFieldModule, CommonModule, MatInputModule, MatTableModule, MatIconModule, MatButtonModule,
-    RouterModule, FormsModule],
+    RouterModule, FormsModule, GameHeaderComponent],
   templateUrl: './translate-game.component.html',
   styleUrl: './translate-game.component.css'
 })

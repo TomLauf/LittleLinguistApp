@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { WordCategory } from '../shared/model/WordCategory';
 import { ActivatedRoute } from '@angular/router';
 import { CategoryManagementService } from '../Services/category-management.service';
+import { GameHeaderComponent } from "../game-header/game-header.component";
 
 @Component({
   selector: 'app-sort-game',
   standalone: true,
-  imports: [],
+  imports: [GameHeaderComponent],
   templateUrl: './sort-game.component.html',
   styleUrl: './sort-game.component.css'
 })

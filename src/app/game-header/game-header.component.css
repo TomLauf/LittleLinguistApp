@@ -1,0 +1,14 @@
+#exitBtn{
+    position: absolute;
+    right: 25px;
+    padding: 8px; 
+    cursor: pointer;
+    border-radius: 50%;
+    border: none;
+}
+
+#exitBtn mat-icon {
+    vertical-align: middle;
+}
+
+
