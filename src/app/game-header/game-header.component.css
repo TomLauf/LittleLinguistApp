@@ -1,4 +1,4 @@
-#exitBtn{
+/* #exitBtn{
     position: absolute;
     right: 25px;
     padding: 8px; 
@@ -11,4 +11,46 @@
     vertical-align: middle;
 }
 
+ */
 
+ /* Style for the header container */
+h1 {
+    font-size: 24px;
+    margin: 0;
+    flex-grow: 1;
+    text-align: center;
+    font-weight: bold;
+  }
+  
+  /* Style for the exit button */
+  #exitBtn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    margin: 0;
+    display: flex;
+    align-items: center;
+  }
+  
+  /* Ensure the mat-icon is centered within the button */
+  #exitBtn mat-icon {
+    font-size: 24px;
+    color: #333; /* You can adjust the color to fit your theme */
+  }
+  
+  /* Style for the header container */
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background-color: #f5f5f5; /* Adjust background color as needed */
+    border-bottom: 1px solid #ddd;
+  }
+  
+  /* Optional: Add some hover effect to the exit button */
+  #exitBtn:hover mat-icon {
+    color: #d9534f; /* Change color on hover (e.g., red) */
+  }
+  

@@ -41,11 +41,11 @@ export class CategoryFormComponent {
     this.currentCategory.Words = this.currentCategory.Words.filter(wp => wp != wordsPair);
   }
 
-  saveCategory(){
-    if(this.currentCategory.Words.length == 0){
-      alert("you must have at least one pair of words!");
-      return;
-    }
+    saveCategory(){
+      if(this.currentCategory.Words.length == 0){
+        alert("you must have at least one pair of words!");
+        return;
+      }
     if(this.currentCategory.CategoryId == 0){
       this.categoryManagementService.add(this.currentCategory);
       console.log("add", this.currentCategory);
@@ -54,6 +54,6 @@ export class CategoryFormComponent {
       console.log("update", this.currentCategory);
 
     }
-    this.router.navigate(["/"]);
+    this.router.navigate(["/Admin"]);
   }
 }

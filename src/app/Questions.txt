@@ -1,3 +1,4 @@
 1. FireBase is not working. tried to install it and got an error.
 2. Why does the exit game dialog looks different than the choose category and delete category dialogs?
-
+3. the little linguist on header should route the user to the dashboard. what should happens if the user is in a game and click on it?
+4. Is the message in sort game okay?  

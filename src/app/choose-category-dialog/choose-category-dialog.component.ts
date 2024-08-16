@@ -21,17 +21,26 @@ export class ChooseCategoryDialogComponent implements OnInit {
 
   categories: WordCategory[] = [];
   public selectedCategory: WordCategory | undefined;
+  public errorMessage: string = '';
 
   constructor(private categoryManagementService: CategoryManagementService, @Inject (MAT_DIALOG_DATA) private game: GameProfile, private router: Router) {}
   ngOnInit(): void {
     this.categories = this.categoryManagementService.list();
   }
 
+  checkGameReady() {
+    if (this.selectedCategory && this.selectedCategory.Words.length < this.game.MinWordsNo) {
+      this.errorMessage = `Note that at least ${this.game.MinWordsNo} words required.`;
+    } else {
+      this.errorMessage = '';
+    }
+  }
+
   playGame() {
     if(this.game != undefined && this.selectedCategory != undefined){
-      let gameURL= this.game.GameURL;
-      let category= this.selectedCategory.CategoryId;
-      this.router.navigate([gameURL,category]);
+      let gameURL = this.game.GameURL;
+      let category = this.selectedCategory.CategoryId;
+      this.router.navigate([gameURL, category]);
     }
     }
 }
