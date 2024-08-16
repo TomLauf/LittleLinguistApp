@@ -26,8 +26,7 @@ export class ChooseGameComponent implements OnInit {
   }
 
   chooseCategory(game: GameProfile) {
-      console.log("hello")
     this.dialog.open(ChooseCategoryDialogComponent, {data:game})
-    } 
+    }
 
 }

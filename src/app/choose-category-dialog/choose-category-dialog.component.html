@@ -10,5 +10,5 @@
     <p *ngIf="this.selectedCategory != undefined">Last update:{{selectedCategory.LastUpdate | date:'dd/MM/yyyy'}}</p>
   </div>
   <div mat-dialog-actions>
-    <button mat-button mat-dialog-close cdkFocusInitial [mat-dialog-close]="true" (click)="playGame()" [disabled]="!selectedCategory">Play</button>
+    <button mat-button mat-dialog-close [mat-dialog-close]="true" (click)="playGame()" [disabled]="!selectedCategory">Play</button>
   </div>

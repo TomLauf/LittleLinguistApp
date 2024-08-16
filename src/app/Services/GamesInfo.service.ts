@@ -12,7 +12,7 @@ export class GamesInfoService {
       1,
       'Translate Game',
       'Translate words and phrases from Hebrew to English.',
-      'translateGame'
+      'TranslateGame'
     ),
     new GameProfile(
       2,
