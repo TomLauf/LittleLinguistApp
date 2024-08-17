@@ -1,0 +1,92 @@
+.mixed-words-game-results {
+  text-align: center;
+  width: 100%;
+  margin: 1em auto;
+}
+
+.mixed-words-game-results-main-header {
+  margin-bottom: 0;
+}
+
+.mixed-words-game-results-grade {
+  margin: 0.5em 0;
+}
+
+.mixed-words-game-results-correct-of {
+  margin: 0.5em 0;
+}
+
+.btn {
+  margin-top: 1.5em;
+  border-radius: 20px;
+  border: none;
+  outline: none;
+  padding: 0.5em 0.8em;
+  background-color: #add8e6;
+}
+
+.btn:hover {
+  cursor: pointer;
+  background-color: #a3cfdd;
+}
+
+.mixed-words-game-results .mat-mdc-table {
+  min-width: 90%;
+  margin: 0 auto;
+}
+
+.mixed-words-game {
+  text-align: center;
+}
+
+.mixed-words-game-input-container {
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  margin: 0 auto;
+  align-items: center;
+}
+
+.mixed-words-game-buttons {
+  display: flex;
+  gap: 0.5em;
+}
+
+.mixed-words-game-buttons .btn {
+  margin-top: 1em;
+}
+
+.input-container {
+  border-radius: 20px;
+  border: 1px solid gray;
+}
+
+.input {
+  padding: 0.5em;
+  padding-left: 1em;
+  border-radius: 20px;
+  border: none;
+  outline: none;
+}
+
+.message {
+  padding: 0.3em;
+  margin: 0.3em;
+}
+
+.progress-bar-container {
+  height: 100px;
+  width: 90%;
+  padding-top: 1em;
+  display: flex;
+  justify-content: center;
+  gap: 0.5em;
+  height: 40px;
+  align-items: center;
+  position: relative;
+}
+
+.progress-bar-grade {
+  position: absolute;
+  bottom: -10px;
+}
