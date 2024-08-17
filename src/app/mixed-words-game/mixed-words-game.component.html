@@ -1,2 +1,89 @@
 <app-game-header></app-game-header>
-<p>{{category?.CategoryName}}</p>
+<div *ngIf="isGameOn; else gameFinished" class="mixed-words-game">
+  <p>{{ category?.CategoryName }}</p>
+  <h3>The word is in mixed order, please type the original word</h3>
+  <p>Mixed: {{ mixedWords[wordIndex].mixed }}</p>
+  <p>Hebrew: {{ mixedWords[wordIndex].translated }}</p>
+  <div class="mixed-words-game-input-container">
+    <div class="input-container">
+      <input
+        [(ngModel)]="inputValue"
+        placeholder="Enter some text"
+        required
+        class="input"
+        (keydown.enter)="checkAnswer()"
+      />
+    </div>
+    <p *ngIf="message" class="message">{{ message }}</p>
+    <div class="mixed-words-game-buttons">
+      <button
+        *ngIf="showGameButtons"
+        mat-button
+        (click)="resetInput()"
+        class="btn"
+      >
+        Reset Input
+      </button>
+      <button
+        *ngIf="showGameButtons"
+        mat-button
+        (click)="checkAnswer()"
+        class="btn"
+      >
+        Check
+      </button>
+    </div>
+    <div class="progress-bar-container">
+      <span>{{ wordIndex }}</span>
+      <mat-progress-bar mode="determinate" [value]="progressValue">
+      </mat-progress-bar>
+      <span>{{ mixedWords.length }}</span>
+      <div class="progress-bar-grade">{{ getRoundedGrade() }} / 100</div>
+    </div>
+  </div>
+</div>
+
+<ng-template #gameFinished>
+  <div class="mixed-words-game-results">
+    <h3 class="mixed-words-game-results-main-header">
+      Mixed Letters - {{ category?.CategoryName }} - Results
+    </h3>
+    <p class="mixed-words-game-results-grade">Grade: {{ grade }}</p>
+    <p class="mixed-words-game-results-correct-of">
+      You were correct in {{ correctAnswers }} out of
+      {{ mixedWords.length }} words
+    </p>
+    <table mat-table [dataSource]="gameResults" class="mat-elevation-z8">
+      <ng-container matColumnDef="Origin">
+        <th mat-header-cell *matHeaderCellDef>Origin</th>
+        <td mat-cell *matCellDef="let element">{{ element.origin }}</td>
+      </ng-container>
+      <ng-container matColumnDef="Target">
+        <th mat-header-cell *matHeaderCellDef>Target</th>
+        <td mat-cell *matCellDef="let element">
+          <p>
+            {{ element.target }}
+          </p>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="Results">
+        <th mat-header-cell *matHeaderCellDef>Results</th>
+        <td mat-cell *matCellDef="let element">
+          <!-- When adding an exclamation mark it changes the value, true becomes false and otherwise -->
+          <p *ngIf="!element.isCorrect">
+            <mat-icon class="wrongAns">mood_bad</mat-icon>
+          </p>
+          <p *ngIf="element.isCorrect">
+            <mat-icon class="trueAns">mood</mat-icon>
+          </p>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedGameResultsColumns"></tr>
+      <tr
+        mat-row
+        *matRowDef="let row; columns: displayedGameResultsColumns"
+      ></tr>
+    </table>
+    <button mat-button (click)="newGame()" class="btn">New Game</button>
+  </div>
+</ng-template>
