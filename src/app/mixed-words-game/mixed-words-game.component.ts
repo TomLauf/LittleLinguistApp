@@ -100,7 +100,6 @@ export class MixedWordsGameComponent {
 
     if (isCorrect) {
       this.message = 'YAY! Correct Answer!';
-      // It's the same as this.grade = this.grade + something
       this.grade += 100 / this.mixedWords.length;
       this.correctAnswers++;
     } else {
