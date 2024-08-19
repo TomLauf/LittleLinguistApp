@@ -1,9 +1,9 @@
 <app-game-header></app-game-header>
-<p>{{currentCategory?.CategoryName}}</p>
-
-<h1>Is "{{ wordsToSort[wordIndex].Origin }}" part of the current category?</h1>
+<div class="sort-words-game">
+<h1>Is "{{ wordsToSort[wordIndex].Origin }}" part of {{currentCategory?.CategoryName    }} category?</h1>
 
 <p *ngIf="message">{{ message }}</p>
 
 <button mat-button (click)="checkandGotonextWord(true)" value="yes">Yes</button>
 <button mat-button (click)="checkandGotonextWord(false)" value="no">No</button>
+</div>

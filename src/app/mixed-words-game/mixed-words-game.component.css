@@ -1,3 +1,17 @@
+app-game-header{
+  position: fixed;
+  top: 8%;
+  width: 100%;
+}
+
+.mixed-words-game {
+  text-align: center;
+  width: 100%;
+  margin: 1em auto;
+  padding-top: calc(8% + 1em);
+}
+
+
 .mixed-words-game-results {
   text-align: center;
   width: 100%;

@@ -3,18 +3,28 @@ import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { ExitGameDialogComponent } from '../exit-game-dialog/exit-game-dialog.component';
+import { CategoryManagementService } from '../Services/category-management.service';
+import { WordCategory } from '../shared/model/WordCategory';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 
 @Component({
   selector: 'app-game-header',
   standalone: true,
-  imports: [MatIconModule],
+  imports: [MatIconModule,MatToolbarModule],
   templateUrl: './game-header.component.html',
   styleUrl: './game-header.component.css'
 })
 export class GameHeaderComponent {
   GameName = "";
-  constructor(private route: ActivatedRoute, private dialog:MatDialog, private router: Router) {}
+  category: WordCategory | undefined;
+
+  constructor(private route: ActivatedRoute, private dialog:MatDialog, private router: Router, private CategoryManagementService: CategoryManagementService) {
+    let CategoryId = this.route.snapshot.paramMap.get('CategoryId');
+    if (CategoryId != null){
+      this.category = this.CategoryManagementService.get(parseInt(CategoryId));
+    }
+  }
 
   ngOnInit(): void {
     const URLGameName = this.route.snapshot.url[0]?.path;

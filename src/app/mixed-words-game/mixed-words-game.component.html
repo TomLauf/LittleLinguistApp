@@ -1,6 +1,5 @@
 <app-game-header></app-game-header>
 <div *ngIf="isGameOn; else gameFinished" class="mixed-words-game">
-  <p>{{ category?.CategoryName }}</p>
   <h3>The word is in mixed order, please type the original word</h3>
   <p>Mixed: {{ mixedWords[wordIndex].mixed }}</p>
   <p>Hebrew: {{ mixedWords[wordIndex].translated }}</p>
