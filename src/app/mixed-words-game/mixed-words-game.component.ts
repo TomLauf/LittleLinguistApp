@@ -12,7 +12,7 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatProgressBarModule } from '@angular/material/progress-bar';// pb
 
 @Component({
   selector: 'app-mixed-words-game',
@@ -47,7 +47,7 @@ export class MixedWordsGameComponent {
   }[] = [];
   displayedGameResultsColumns: string[] = ['Origin', 'Target', 'Results'];
   showGameButtons: boolean = true;
-  progressValue: number = 0;
+  progressValue: number = 0;// pb
 
   constructor(
     private route: ActivatedRoute,
