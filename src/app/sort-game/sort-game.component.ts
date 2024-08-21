@@ -8,11 +8,13 @@ import { GameProfile } from '../shared/model/GameProfile';
 import { GamesInfoService } from '../Services/GamesInfo.service';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
+import { GamePointsComponent } from "../game-points/game-points.component";
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @Component({
   selector: 'app-sort-game',
   standalone: true,
-  imports: [GameHeaderComponent, CommonModule, MatButtonModule],
+  imports: [GameHeaderComponent, CommonModule, MatButtonModule, GamePointsComponent,MatProgressBarModule],
   templateUrl: './sort-game.component.html',
   styleUrls: ['./sort-game.component.css']
 })
@@ -26,6 +28,9 @@ export class SortGameComponent {
   wordIndex = 0;
   message: string = '';
   userAnswer: boolean = true;
+  points: number = 0;
+  progressValue: number = 0;
+
 
   constructor(private route: ActivatedRoute, private categoryManagementService: CategoryManagementService, private gameInfoService: GamesInfoService) {
     let categoryId = this.route.snapshot.paramMap.get('CategoryId');
@@ -69,30 +74,39 @@ export class SortGameComponent {
     console.log(this.wordsToSort);
     }
 
-    checkandGotonextWord(answer: boolean) {
+    checkAnswer(answer: boolean) {
       this.userAnswer = answer;
 
       const currentWord = this.wordsToSort[this.wordIndex];
       const isInCategory = this.currentCategory?.Words.some(word => word.Origin === currentWord.Origin);
-      const messageElement = document.querySelector('.message') as HTMLElement;
 
   if (isInCategory === this.userAnswer) {
     this.message = 'YAY! Correct Answer!';
-    messageElement.classList.add('correct');
-    messageElement.classList.remove('wrong');
+    this.points += 100 / this.wordsToSort.length;
   } else {
     this.message = 'Sorry, Wrong answer!';
-    messageElement.classList.add('wrong');
-    messageElement.classList.remove('correct');
   }
       console.log(this.wordIndex);
 
+  if (this.wordIndex < this.wordsToSort.length - 1){
+    setTimeout(() => {
       setTimeout(() => {
-        messageElement.classList.add('fade'); // Add fade-out effect
-        setTimeout(() => {
-          this.wordIndex++;
-          this.message = '';  
-          messageElement.classList.remove('fade'); // Reset for next message
-        }, 500); // Wait until the fade-out effect is done
-      }, 5000);
-  }}
+        this.wordIndex++;
+        this.message = '';  
+        this.progressValue = this.calculateProgressValue();
+      });
+    }, 2000);
+  }else {
+    this.points = Math.floor(this.points);
+      
+  }
+}
+  
+  getRoundedPoints() {
+    return Math.floor(this.points);
+  }
+
+  calculateProgressValue() {
+    return (this.wordIndex / this.wordsToSort.length) * 100;
+  }
+}

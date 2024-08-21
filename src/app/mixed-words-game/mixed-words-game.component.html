@@ -1,5 +1,7 @@
 <app-game-header></app-game-header>
 <div *ngIf="isGameOn; else gameFinished" class="mixed-words-game">
+  <app-game-points [points]="getRoundedPoints()"></app-game-points>
+
   <h3>The word is in mixed order, please type the original word</h3>
   <p>Mixed: {{ mixedWords[wordIndex].mixed }}</p>
   <p>Hebrew: {{ mixedWords[wordIndex].translated }}</p>
@@ -15,29 +17,14 @@
     </div>
     <p *ngIf="message" class="message">{{ message }}</p>
     <div class="mixed-words-game-buttons">
-      <button
-        *ngIf="showGameButtons"
-        mat-button
-        (click)="resetInput()"
-        class="btn"
-      >
-        Reset Input
-      </button>
-      <button
-        *ngIf="showGameButtons"
-        mat-button
-        (click)="checkAnswer()"
-        class="btn"
-      >
-        Check
-      </button>
-    </div>
+      <button *ngIf="showGameButtons" mat-button (click)="resetInput()" class="btn">Reset Input</button>
+      <button *ngIf="showGameButtons" mat-button (click)="checkAnswer()" [disabled]="!isInputValid()" class="btn">Check</button>    
+  </div>
     <div class="progress-bar-container">
       <span>{{ wordIndex }}</span>
       <mat-progress-bar mode="determinate" [value]="progressValue">
       </mat-progress-bar>
       <span>{{ mixedWords.length }}</span>
-      <div class="progress-bar-grade">{{ getRoundedGrade() }} / 100</div>
     </div>
   </div>
 </div>
@@ -47,11 +34,12 @@
     <h3 class="mixed-words-game-results-main-header">
       Mixed Letters - {{ category?.CategoryName }} - Results
     </h3>
-    <p class="mixed-words-game-results-grade">Grade: {{ grade }}</p>
+    <p class="mixed-words-game-results-grade">Points: {{ points }}</p>
     <p class="mixed-words-game-results-correct-of">
       You were correct in {{ correctAnswers }} out of
       {{ mixedWords.length }} words
     </p>
+    
     <table mat-table [dataSource]="gameResults" class="mat-elevation-z8">
       <ng-container matColumnDef="Origin">
         <th mat-header-cell *matHeaderCellDef>Origin</th>

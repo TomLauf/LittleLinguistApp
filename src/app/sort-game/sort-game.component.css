@@ -33,35 +33,15 @@ button:hover{
    background-color: #FFA62F;
 }
 
-
-.message {
-   font-size: 24px;
-   font-weight: bold;
-   text-align: center;
-   margin-top: 20px;
-   padding: 10px;
-   border-radius: 10px;
-   transition: all 0.5s ease-in-out;
- }
- 
- .message.correct {
-   background-color: #e0ffe0; /* Light green background */
-   color: #28a745; /* Green text */
-   text-shadow: 2px 2px 4px rgba(0, 128, 0, 0.7);
-   box-shadow: 0 0 10px rgba(0, 128, 0, 0.5);
-   border: 2px solid #28a745;
- }
- 
- .message.wrong {
-   background-color: #ffe0e0; /* Light red background */
-   color: #dc3545; /* Red text */
-   text-shadow: 2px 2px 4px rgba(255, 0, 0, 0.7);
-   box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
-   border: 2px solid #dc3545;
- }
- 
- .message.fade {
-   opacity: 0;
-   transform: scale(0.9);
+.progress-bar-container {
+   height: 100px;
+   width: 90%;
+   padding-top: 1em;
+   display: flex;
+   justify-content: center;
+   gap: 0.5em;
+   height: 40px;
+   align-items: center;
+   position: relative;
  }
  

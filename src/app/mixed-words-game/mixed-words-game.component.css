@@ -100,7 +100,3 @@ app-game-header{
   position: relative;
 }
 
-.progress-bar-grade {
-  position: absolute;
-  bottom: -10px;
-}

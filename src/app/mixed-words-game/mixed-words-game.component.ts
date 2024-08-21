@@ -12,7 +12,8 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
-import { MatProgressBarModule } from '@angular/material/progress-bar';// pb
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { GamePointsComponent } from "../game-points/game-points.component";
 
 @Component({
   selector: 'app-mixed-words-game',
@@ -26,7 +27,8 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';// pb
     MatTableModule,
     MatIconModule,
     MatProgressBarModule,
-  ],
+    GamePointsComponent
+],
   templateUrl: './mixed-words-game.component.html',
   styleUrl: './mixed-words-game.component.css',
 })
@@ -38,7 +40,7 @@ export class MixedWordsGameComponent {
   message: string = '';
   inputValue: string = '';
   isGameOn: boolean = true;
-  grade: number = 0;
+  points: number = 0;
   correctAnswers: number = 0;
   gameResults: {
     origin: string;
@@ -47,7 +49,7 @@ export class MixedWordsGameComponent {
   }[] = [];
   displayedGameResultsColumns: string[] = ['Origin', 'Target', 'Results'];
   showGameButtons: boolean = true;
-  progressValue: number = 0;// pb
+  progressValue: number = 0;
 
   constructor(
     private route: ActivatedRoute,
@@ -76,31 +78,35 @@ export class MixedWordsGameComponent {
     }
   }
 
-  shuffleString(str: string) {
-    let arr = str.split('');
-    for (let i = arr.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [arr[i], arr[j]] = [arr[j], arr[i]];
+  shuffleString(str: string): string {
+    let shuffled = str;
+    while (shuffled === str) {
+      let arr = str.split('');
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      shuffled = arr.join('');
     }
-
-    return arr.join('');
+    return shuffled;
   }
 
   resetInput() {
     this.inputValue = '';
   }
 
+  isInputValid(): boolean {
+    return /^[a-zA-Z]+$/.test(this.inputValue);
+  }
+
   checkAnswer() {
     this.showGameButtons = false;
-
     const currentWord = this.mixedWords[this.wordIndex];
-    const isCorrect =
-      currentWord.origin.toLocaleLowerCase() ===
-      this.inputValue.toLocaleLowerCase();
+    const isCorrect = currentWord.origin.toLocaleLowerCase() ===this.inputValue.toLocaleLowerCase();
 
     if (isCorrect) {
       this.message = 'YAY! Correct Answer!';
-      this.grade += 100 / this.mixedWords.length;
+      this.points += 100 / this.mixedWords.length;
       this.correctAnswers++;
     } else {
       this.message = 'Sorry, Wrong answer!';
@@ -114,16 +120,15 @@ export class MixedWordsGameComponent {
     });
 
     if (this.wordIndex < this.mixedWords.length - 1) {
+      setTimeout(() => {
       this.wordIndex++;
       this.progressValue = this.calculateProgressValue();
-
-      setTimeout(() => {
         this.message = '';
         this.inputValue = '';
         this.showGameButtons = true;
       }, 2000);
     } else {
-      this.grade = Math.floor(this.grade);
+      this.points = Math.floor(this.points);
       this.isGameOn = false;
     }
   }
@@ -132,8 +137,8 @@ export class MixedWordsGameComponent {
     return (this.wordIndex / this.mixedWords.length) * 100;
   }
 
-  getRoundedGrade() {
-    return Math.floor(this.grade);
+  getRoundedPoints() {
+    return Math.floor(this.points);
   }
 
   newGame() {
@@ -141,7 +146,7 @@ export class MixedWordsGameComponent {
     this.message = '';
     this.inputValue = '';
     this.isGameOn = true;
-    this.grade = 0;
+    this.points = 0;
     this.correctAnswers = 0;
     this.gameResults = [];
     this.showGameButtons = true;

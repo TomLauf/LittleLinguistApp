@@ -1,12 +1,18 @@
 <app-game-header></app-game-header>
 <div class="sort-words-game">
+<app-game-points [points]="getRoundedPoints()"></app-game-points>
+
 <h1>Is "{{ wordsToSort[wordIndex].Origin }}" part of {{currentCategory?.CategoryName    }} category?</h1>
 
 <p *ngIf="message" class="message">{{ message }}</p>
 
 <div class="gameBtns">
-    <button mat-button (click)="checkandGotonextWord(true)" value="yes">Yes</button>
-    <button mat-button (click)="checkandGotonextWord(false)" value="no">No</button>
+    <button mat-button (click)="checkAnswer(true)" value="yes">Yes</button>
+    <button mat-button (click)="checkAnswer(false)" value="no">No</button>
 </div>
-
+<div class="progress-bar-container">
+    <span>{{ wordIndex }}</span>
+    <mat-progress-bar mode="determinate" [value]="progressValue"></mat-progress-bar>
+    <span>{{ wordsToSort.length }}</span>
+  </div>
 </div>

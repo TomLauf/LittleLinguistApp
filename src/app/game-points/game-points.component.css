@@ -1,0 +1,31 @@
+.gamePoints {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #4caf50; /* Green background */
+    color: #fff; /* White text color */
+    font-size: 1.5rem; /* Larger font size */
+    padding: 10px 20px; /* Padding inside the div */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transitions */
+  }
+  
+  .gamePoints:hover {
+    background-color: #66bb6a; /* Slightly lighter green on hover */
+    transform: translateY(-2px); /* Lift up slightly on hover */
+  }
+  
+  .gamePoints mat-icon {
+    margin-right: 8px; /* Space between icon and text */
+    font-size: 2rem; /* Larger icon size */
+    color: #ffc107; /* Gold color for the icon */
+  }
+  
+  .gamePoints::after {
+    content: "points";
+    margin-left: 5px; /* Space between points number and "points" text */
+    font-size: 1rem; /* Slightly smaller font for "points" text */
+    opacity: 0.8; /* Slightly transparent */
+  }
+  
