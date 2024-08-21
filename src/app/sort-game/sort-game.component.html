@@ -2,8 +2,11 @@
 <div class="sort-words-game">
 <h1>Is "{{ wordsToSort[wordIndex].Origin }}" part of {{currentCategory?.CategoryName    }} category?</h1>
 
-<p *ngIf="message">{{ message }}</p>
+<p *ngIf="message" class="message">{{ message }}</p>
 
-<button mat-button (click)="checkandGotonextWord(true)" value="yes">Yes</button>
-<button mat-button (click)="checkandGotonextWord(false)" value="no">No</button>
+<div class="gameBtns">
+    <button mat-button (click)="checkandGotonextWord(true)" value="yes">Yes</button>
+    <button mat-button (click)="checkandGotonextWord(false)" value="no">No</button>
+</div>
+
 </div>

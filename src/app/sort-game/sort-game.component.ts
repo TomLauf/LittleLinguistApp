@@ -74,18 +74,25 @@ export class SortGameComponent {
 
       const currentWord = this.wordsToSort[this.wordIndex];
       const isInCategory = this.currentCategory?.Words.some(word => word.Origin === currentWord.Origin);
+      const messageElement = document.querySelector('.message') as HTMLElement;
 
   if (isInCategory === this.userAnswer) {
     this.message = 'YAY! Correct Answer!';
+    messageElement.classList.add('correct');
+    messageElement.classList.remove('wrong');
   } else {
     this.message = 'Sorry, Wrong answer!';
+    messageElement.classList.add('wrong');
+    messageElement.classList.remove('correct');
   }
       console.log(this.wordIndex);
 
       setTimeout(() => {
-        this.wordIndex++;
-        this.message = '';  
-      }, 5000);  
-       
-    }
-  }
+        messageElement.classList.add('fade'); // Add fade-out effect
+        setTimeout(() => {
+          this.wordIndex++;
+          this.message = '';  
+          messageElement.classList.remove('fade'); // Reset for next message
+        }, 500); // Wait until the fade-out effect is done
+      }, 5000);
+  }}
