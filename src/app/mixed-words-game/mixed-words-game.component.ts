@@ -14,6 +14,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { GamePointsComponent } from "../game-points/game-points.component";
+import { GameSummeryComponent } from "../game-summery/game-summery.component";
 
 @Component({
   selector: 'app-mixed-words-game',
@@ -27,7 +28,8 @@ import { GamePointsComponent } from "../game-points/game-points.component";
     MatTableModule,
     MatIconModule,
     MatProgressBarModule,
-    GamePointsComponent
+    GamePointsComponent,
+    GameSummeryComponent
 ],
   templateUrl: './mixed-words-game.component.html',
   styleUrl: './mixed-words-game.component.css',

@@ -1,7 +1,6 @@
 <app-game-header></app-game-header>
 <div *ngIf="isGameOn; else gameFinished" class="mixed-words-game">
   <app-game-points [points]="getRoundedPoints()"></app-game-points>
-
   <h3>The word is in mixed order, please type the original word</h3>
   <p>Mixed: {{ mixedWords[wordIndex].mixed }}</p>
   <p>Hebrew: {{ mixedWords[wordIndex].translated }}</p>
@@ -29,6 +28,8 @@
   </div>
 </div>
 
+
+<app-game-summery></app-game-summery>
 <ng-template #gameFinished>
   <div class="mixed-words-game-results">
     <h3 class="mixed-words-game-results-main-header">
@@ -56,7 +57,6 @@
       <ng-container matColumnDef="Results">
         <th mat-header-cell *matHeaderCellDef>Results</th>
         <td mat-cell *matCellDef="let element">
-          <!-- When adding an exclamation mark it changes the value, true becomes false and otherwise -->
           <p *ngIf="!element.isCorrect">
             <mat-icon class="wrongAns">mood_bad</mat-icon>
           </p>
