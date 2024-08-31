@@ -17,7 +17,7 @@ export class GamesInfoService {
     new GameProfile(
       2,
       'Sort Words',
-      'Arrange jumbled words to form correct sentences.',
+      'Sort the words that appear on the screen into the correct categories',
       'SortGame',
       'assets/game-pics/sortWordsPic.png',
       3

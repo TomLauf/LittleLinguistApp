@@ -27,7 +27,7 @@ export class ChooseCategoryDialogComponent implements OnInit {
   ngOnInit(): void {
     this.categories = this.categoryManagementService.list();
   }
-
+  gameName = this.game.GameName
   checkGameReady() {
     if (this.selectedCategory && this.selectedCategory.Words.length < this.game.MinWordsNo) {
       this.errorMessage = `Note that at least ${this.game.MinWordsNo} words required.`;

@@ -126,7 +126,7 @@ export class SortGameComponent {
         this.progressValue = this.calculateProgressValue();
         this.showGameButtons = true;
       });
-    }, 200);
+    }, 2000);
   }else {
     this.points = Math.floor(this.points);
     this.isGameOn = false; 

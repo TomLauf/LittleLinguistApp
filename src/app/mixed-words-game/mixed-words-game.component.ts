@@ -71,7 +71,7 @@ export class MixedWordsGameComponent {
         this.mixedWords.push(
           new MixedWord(
             word.Origin,
-            this.shuffleString(word.Origin),
+            this.shuffleString(word.Origin).toUpperCase(),
             word.Translated
           )
         );

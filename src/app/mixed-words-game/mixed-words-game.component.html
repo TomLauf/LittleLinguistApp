@@ -1,21 +1,13 @@
 <app-game-header></app-game-header>
-<div *ngIf="isGameOn; else gameFinished" class="mixed-words-game">
-  <app-game-points [points]="getRoundedPoints()"></app-game-points>
-  <h3>The word is in mixed order, please type the original word</h3>
-  <p>Mixed: {{ mixedWords[wordIndex].mixed }}</p>
-  <p>Hebrew: {{ mixedWords[wordIndex].translated }}</p>
-  <div class="mixed-words-game-input-container">
-    <div class="input-container">
-      <input
-        [(ngModel)]="inputValue"
-        placeholder="Enter some text"
-        required
-        class="input"
-        (keydown.enter)="checkAnswer()"
-      />
-    </div>
+<app-game-points [points]="getRoundedPoints()"></app-game-points>
+<div *ngIf="isGameOn; else gameFinished" class="game">
+  <h1 class="word">{{ mixedWords[wordIndex].translated }}</h1>
+  <h3 class="mixedWord">{{ mixedWords[wordIndex].mixed }}</h3>
+  
+  <div class="game-content">
+      <input [(ngModel)]="inputValue" placeholder="Enter the word" required class="input" (keydown.enter)="checkAnswer()"/>
     <p *ngIf="message" class="message">{{ message }}</p>
-    <div class="mixed-words-game-buttons">
+    <div class="gameBtns">
       <button *ngIf="showGameButtons" mat-button (click)="resetInput()" class="btn">Reset Input</button>
       <button *ngIf="showGameButtons" mat-button (click)="checkAnswer()" [disabled]="!isInputValid()" class="btn">Check</button>    
   </div>
@@ -28,7 +20,6 @@
   </div>
 </div>
 
-
 <ng-template #gameFinished>
   <app-game-summery 
   [points]="points" 
@@ -36,5 +27,5 @@
   [allAns]="mixedWords.length" 
   [mixedWordsGameResults]="gameResults">
 </app-game-summery>  
-<button mat-button (click)="newGame()" class="btn">New Game</button>
+<button mat-button (click)="newGame()" class="newGameBtn">New Game</button>
 </ng-template>
