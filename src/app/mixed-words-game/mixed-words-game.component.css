@@ -100,3 +100,9 @@ app-game-header{
   position: relative;
 }
 
+app-game-summery {
+  text-align: center;
+  width: 100%;
+  margin: 1em auto;
+  padding-top: calc(8% + 5em); /* Adjusted padding to avoid overlap with the fixed header */
+}

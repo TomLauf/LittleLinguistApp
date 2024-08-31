@@ -43,13 +43,12 @@ export class MixedWordsGameComponent {
   inputValue: string = '';
   isGameOn: boolean = true;
   points: number = 0;
-  correctAnswers: number = 0;
+  numCorrectAns: number = 0;
   gameResults: {
     origin: string;
     target: string;
     isCorrect: boolean;
   }[] = [];
-  displayedGameResultsColumns: string[] = ['Origin', 'Target', 'Results'];
   showGameButtons: boolean = true;
   progressValue: number = 0;
 
@@ -104,12 +103,12 @@ export class MixedWordsGameComponent {
   checkAnswer() {
     this.showGameButtons = false;
     const currentWord = this.mixedWords[this.wordIndex];
-    const isCorrect = currentWord.origin.toLocaleLowerCase() ===this.inputValue.toLocaleLowerCase();
+    const isCorrect = currentWord.origin.toLocaleLowerCase() === this.inputValue.toLocaleLowerCase();
 
     if (isCorrect) {
       this.message = 'YAY! Correct Answer!';
       this.points += 100 / this.mixedWords.length;
-      this.correctAnswers++;
+      this.numCorrectAns++;
     } else {
       this.message = 'Sorry, Wrong answer!';
     }
@@ -149,7 +148,7 @@ export class MixedWordsGameComponent {
     this.inputValue = '';
     this.isGameOn = true;
     this.points = 0;
-    this.correctAnswers = 0;
+    this.numCorrectAns = 0;
     this.gameResults = [];
     this.showGameButtons = true;
     this.progressValue = 0;

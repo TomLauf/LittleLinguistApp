@@ -1,7 +1,8 @@
   <div class="cards-container">
     <mat-card appearance="outlined" *ngFor="let game of games" (click)="chooseCategory(game)">
-        <img mat-card-image src="https://i.ytimg.com/vi/STKppKQGHNE/maxresdefault.jpg">
-        <mat-card-header>{{ game.GameName }}</mat-card-header>
+      <img mat-card-image [src]="game.GamePic">
+      <!-- <mat-card-header>{{ game.GameName }}</mat-card-header> -->
+       <br>
         <mat-card-content>{{ game.GameDescription }}</mat-card-content>
       </mat-card>
   </div>

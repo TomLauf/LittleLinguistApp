@@ -10,11 +10,12 @@ import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { GamePointsComponent } from "../game-points/game-points.component";
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { GameSummeryComponent } from "../game-summery/game-summery.component";
 
 @Component({
   selector: 'app-sort-game',
   standalone: true,
-  imports: [GameHeaderComponent, CommonModule, MatButtonModule, GamePointsComponent,MatProgressBarModule],
+  imports: [GameHeaderComponent, CommonModule, MatButtonModule, GamePointsComponent, MatProgressBarModule, GameSummeryComponent],
   templateUrl: './sort-game.component.html',
   styleUrls: ['./sort-game.component.css']
 })
@@ -30,7 +31,18 @@ export class SortGameComponent {
   userAnswer: boolean = true;
   points: number = 0;
   progressValue: number = 0;
-
+  numCorrectAns: number = 0;
+  isGameOn: boolean = true;
+  showGameButtons: boolean = true;
+  gameResults: {
+    origin: string;
+    currentGameCategory: string | undefined;
+    trueWordCategory: string | undefined;
+    guess: string;
+    isCorrect: boolean;
+  }[] = [];
+  ansForResult: string = '';
+  trueCategory: WordCategory | undefined; 
 
   constructor(private route: ActivatedRoute, private categoryManagementService: CategoryManagementService, private gameInfoService: GamesInfoService) {
     let categoryId = this.route.snapshot.paramMap.get('CategoryId');
@@ -70,23 +82,41 @@ export class SortGameComponent {
       let randomWords = firstRandomWordsRandomCategory.concat(firstRandomWordsCurrentCategory);//apple, banana, kiwi, head, leg, hand
       this.wordsToSort = randomWords.sort(() => Math.random() - 0.5);//kiwi,head,apple,hand,leg,banana
     }
-
-    console.log(this.wordsToSort);
     }
 
     checkAnswer(answer: boolean) {
+      this.showGameButtons = false;
       this.userAnswer = answer;
 
       const currentWord = this.wordsToSort[this.wordIndex];
       const isInCategory = this.currentCategory?.Words.some(word => word.Origin === currentWord.Origin);
+      if(this.userAnswer){
+        this.ansForResult = 'Yes';
+      } else {this.ansForResult = 'No'};
 
-  if (isInCategory === this.userAnswer) {
+      this.trueCategory = isInCategory ? this.currentCategory : this.randomCategory;
+
+      if (isInCategory === this.userAnswer) {
     this.message = 'YAY! Correct Answer!';
     this.points += 100 / this.wordsToSort.length;
+    this.numCorrectAns++;
+    this.gameResults.push({
+      origin: currentWord.Origin,
+      currentGameCategory: this.currentCategory?.CategoryName,
+      trueWordCategory: this.trueCategory?.CategoryName,
+      guess: this.ansForResult,
+      isCorrect: true,
+    });
   } else {
     this.message = 'Sorry, Wrong answer!';
+    this.gameResults.push({
+      origin: currentWord.Origin,
+      currentGameCategory: this.currentCategory?.CategoryName,
+      trueWordCategory: this.trueCategory?.CategoryName,
+      guess: this.ansForResult,
+      isCorrect: false,
+    });
   }
-      console.log(this.wordIndex);
 
   if (this.wordIndex < this.wordsToSort.length - 1){
     setTimeout(() => {
@@ -94,11 +124,12 @@ export class SortGameComponent {
         this.wordIndex++;
         this.message = '';  
         this.progressValue = this.calculateProgressValue();
+        this.showGameButtons = true;
       });
-    }, 2000);
+    }, 200);
   }else {
     this.points = Math.floor(this.points);
-      
+    this.isGameOn = false; 
   }
 }
   
@@ -108,5 +139,16 @@ export class SortGameComponent {
 
   calculateProgressValue() {
     return (this.wordIndex / this.wordsToSort.length) * 100;
+  }
+
+  newGame() {
+    this.wordIndex = 0;
+    this.message = '';
+    this.isGameOn = true;
+    this.points = 0;
+    this.numCorrectAns = 0;
+    this.gameResults = [];
+    this.showGameButtons = true;
+    this.progressValue = 0;
   }
 }
