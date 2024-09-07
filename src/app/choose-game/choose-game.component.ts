@@ -1,4 +1,4 @@
-import { Component, OnInit, } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { GameProfile } from '../shared/model/GameProfile';
 import { GamesInfoService } from '../Services/GamesInfo.service';
 import { CommonModule } from '@angular/common';
@@ -10,23 +10,23 @@ import { ChooseCategoryDialogComponent } from '../choose-category-dialog/choose-
 @Component({
   selector: 'app-choose-game',
   standalone: true,
-  imports: [CommonModule,MatCardModule,RouterModule],
+  imports: [CommonModule, MatCardModule, RouterModule],
   templateUrl: './choose-game.component.html',
-  styleUrl: './choose-game.component.css'
+  styleUrl: './choose-game.component.css',
 })
-
 export class ChooseGameComponent implements OnInit {
   public games: GameProfile[] = [];
 
-  constructor(private gamesInfoService: GamesInfoService, private dialog: MatDialog) {
-  }
+  constructor(
+    private gamesInfoService: GamesInfoService,
+    private dialog: MatDialog
+  ) {}
 
-  ngOnInit(): void { 
+  ngOnInit(): void {
     this.games = this.gamesInfoService.list();
   }
 
   chooseCategory(game: GameProfile) {
-    this.dialog.open(ChooseCategoryDialogComponent, {data:game})
-    }
-
+    this.dialog.open(ChooseCategoryDialogComponent, { data: game });
+  }
 }

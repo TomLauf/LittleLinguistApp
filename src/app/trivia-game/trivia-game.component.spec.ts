@@ -8,10 +8,9 @@ describe('TriviaGameComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TriviaGameComponent]
-    })
-    .compileComponents();
-    
+      imports: [TriviaGameComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(TriviaGameComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

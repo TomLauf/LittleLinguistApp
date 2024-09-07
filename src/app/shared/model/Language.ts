@@ -1,4 +1,4 @@
 export enum Language {
-Hebrew,
-English
+  Hebrew,
+  English,
 }

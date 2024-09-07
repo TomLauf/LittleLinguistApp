@@ -67,7 +67,7 @@ export class MixedWordsGameComponent {
     this.currentGame = this.gameInfoService.getGameById(3);
     if (this.category) {
       const categoryWords = this.category.Words;
-      for (let word of categoryWords) {
+      for (const word of categoryWords) {
         this.mixedWords.push(
           new MixedWord(
             word.Origin,

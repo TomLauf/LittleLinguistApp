@@ -1,30 +1,38 @@
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-
   <ng-container matColumnDef="CategoryName">
-    <th mat-header-cell *matHeaderCellDef> Category Name </th>
-    <td mat-cell *matCellDef="let element"> {{element.CategoryName}} </td>
+    <th mat-header-cell *matHeaderCellDef>Category Name</th>
+    <td mat-cell *matCellDef="let element">{{ element.CategoryName }}</td>
   </ng-container>
 
   <ng-container matColumnDef="NumOfWords">
-    <th mat-header-cell *matHeaderCellDef> No. Of Words </th>
-    <td mat-cell *matCellDef="let element"> {{element.Words.length}} </td>
+    <th mat-header-cell *matHeaderCellDef>No. Of Words</th>
+    <td mat-cell *matCellDef="let element">{{ element.Words.length }}</td>
   </ng-container>
 
   <ng-container matColumnDef="LastUpdate">
-    <th mat-header-cell *matHeaderCellDef> Last Update </th>
-    <td mat-cell *matCellDef="let element"> {{element.LastUpdate | date:'dd/MM/yyyy'}} </td>
+    <th mat-header-cell *matHeaderCellDef>Last Update</th>
+    <td mat-cell *matCellDef="let element">
+      {{ element.LastUpdate | date : "dd/MM/yyyy" }}
+    </td>
   </ng-container>
 
   <ng-container matColumnDef="Actions">
-    <th mat-header-cell *matHeaderCellDef> Actions </th>
-    <td mat-cell *matCellDef="let element"> {{element.Actions}}
-      <button mat-icon-button [routerLink]="['/Category/', element.CategoryId]"><mat-icon>edit</mat-icon></button>
-      <button mat-icon-button (click)="deleteCategory(element)"><mat-icon>delete</mat-icon></button>
-     </td>
+    <th mat-header-cell *matHeaderCellDef>Actions</th>
+    <td mat-cell *matCellDef="let element">
+      {{ element.Actions }}
+      <button mat-icon-button [routerLink]="['/Category/', element.CategoryId]">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-icon-button (click)="deleteCategory(element)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
 </table>
 
-<button id="addCategory" routerLink="/newCategory"><mat-icon id="addIcon">add_circle_outline</mat-icon>Add Category</button>
+<button id="addCategory" routerLink="/newCategory">
+  <mat-icon id="addIcon">add_circle_outline</mat-icon>Add Category
+</button>

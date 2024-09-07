@@ -8,10 +8,9 @@ describe('MixedWordsGameComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MixedWordsGameComponent]
-    })
-    .compileComponents();
-    
+      imports: [MixedWordsGameComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(MixedWordsGameComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

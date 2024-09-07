@@ -12,6 +12,13 @@ import { MatButtonModule } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
 import { GameHeaderComponent } from '../game-header/game-header.component';
 
+interface TranslationData {
+  origin: string;
+  translated: string;
+  userAnswerTry: string;
+  answerIsRight: boolean | null;
+}
+
 @Component({
   selector: 'app-translate-game',
   standalone: true,
@@ -36,7 +43,8 @@ export class TranslateGameComponent implements OnInit {
     Language.English,
     Language.Hebrew
   );
-  dataSource: any[] = [];
+
+  dataSource: TranslationData[] = [];
   displayedColumns: string[] = [
     'EnglishWord',
     'HebrewTranslation',
@@ -60,10 +68,10 @@ export class TranslateGameComponent implements OnInit {
         for (let index = 0; index < category.Words.length; index++) {
           const wordsPair = category.Words[index];
           this.dataSource.push({
-            Origin: wordsPair.Origin,
-            Translated: wordsPair.Translated,
-            UserAnswerTry: '',
-            AnswerIsRight: null,
+            origin: wordsPair.Origin,
+            translated: wordsPair.Translated,
+            userAnswerTry: '',
+            answerIsRight: null,
           });
         }
       }
@@ -75,11 +83,11 @@ export class TranslateGameComponent implements OnInit {
 
     for (let index = 0; index < this.dataSource.length; index++) {
       const element = this.dataSource[index];
-      if (element.Translated == element.UserAnswerTry) {
-        element.AnswerIsRight = true;
+      if (element.translated == element.userAnswerTry) {
+        element.answerIsRight = true;
         numOfRightAns++;
       } else {
-        element.AnswerIsRight = false;
+        element.answerIsRight = false;
       }
     }
 

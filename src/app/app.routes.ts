@@ -11,15 +11,15 @@ import { ChooseGameComponent } from './choose-game/choose-game.component';
 import { TriviaGameComponent } from './trivia-game/trivia-game.component';
 
 export const routes: Routes = [
-    { path: "", component: DashboardComponent},
-    { path: "Admin", component: CategoryTableComponent},
-    { path: "chooseGame", component: ChooseGameComponent },
-    { path: "help", component: HelpComponent },
-    { path: "newCategory", component: CategoryFormComponent },
-    { path: "Category/:CategoryId", component: CategoryFormComponent },
-    { path: "MixedWordsGame/:CategoryId", component: MixedWordsGameComponent },
-    { path: "SortGame/:CategoryId", component: SortGameComponent },
-    { path: "TranslateGame/:CategoryId", component: TranslateGameComponent },//old
-    { path: "TriviaGame/:CategoryId", component: TriviaGameComponent }, 
-    { path: "chooseCategory/:CategoryId", component: ChooseCategoryComponent }, //old
+  { path: '', component: DashboardComponent },
+  { path: 'Admin', component: CategoryTableComponent },
+  { path: 'chooseGame', component: ChooseGameComponent },
+  { path: 'help', component: HelpComponent },
+  { path: 'newCategory', component: CategoryFormComponent },
+  { path: 'Category/:CategoryId', component: CategoryFormComponent },
+  { path: 'MixedWordsGame/:CategoryId', component: MixedWordsGameComponent },
+  { path: 'SortGame/:CategoryId', component: SortGameComponent },
+  { path: 'TranslateGame/:CategoryId', component: TranslateGameComponent }, //old
+  { path: 'TriviaGame/:CategoryId', component: TriviaGameComponent },
+  { path: 'chooseCategory/:CategoryId', component: ChooseCategoryComponent }, //old
 ];

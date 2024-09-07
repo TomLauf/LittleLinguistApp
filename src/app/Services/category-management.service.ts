@@ -67,7 +67,9 @@ export class CategoryManagementService {
       try {
         const category = this.get(index);
         categories.push(category);
-      } catch {}
+      } catch {
+        /* ignore ifcategory is not found */
+      }
     }
     return categories;
   }

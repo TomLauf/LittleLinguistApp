@@ -1,35 +1,31 @@
-/* Ensure the container of .gamePoints has relative positioning */
 .container {
   position: relative;
 }
 
-/* Style for the gamePoints element */
 .gamePoints {
   position: absolute;
-  top: 10px; /* Adjust as needed */
-  right: 10px; /* Adjust as needed */
-  background-color: #4CAF50; /* Background color for a vibrant look */
-  color: #ffffff; /* White text color for contrast */
-  border: 1px solid #388E3C; /* Darker green border for a subtle contrast */
-  border-radius: 8px; /* Rounded corners for a modern look */
-  padding: 10px 15px; /* Padding for spacing inside the box */
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3); /* Shadow for a lifted effect */
+  top: 10px;
+  right: 10px;
+  background-color: #4caf50;
+  color: #ffffff;
+  border: 1px solid #388e3c;
+  border-radius: 8px;
+  padding: 10px 15px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
   display: flex;
   align-items: center;
-  font-size: 18px; /* Adjust font size as needed */
-  font-weight: bold; /* Bold text for emphasis */
-  z-index: 1000; /* Ensure it’s on top of other content */
+  font-size: 18px;
+  font-weight: bold;
+  z-index: 1000;
 }
 
-/* Optional: style for the mat-icon */
 .gamePoints mat-icon {
-  margin-right: 8px; /* Spacing between icon and text */
-  font-size: 24px; /* Adjust icon size as needed */
-  color: #ffffff; /* Ensure icon color matches text */
+  margin-right: 8px;
+  font-size: 24px;
+  color: #ffffff;
 }
 
-/* Optional: Add hover effect for interactivity */
 .gamePoints:hover {
-  background-color: #45A049; /* Slightly lighter green on hover */
-  border-color: #2C6B2F; /* Darker green border on hover */
+  background-color: #45a049;
+  border-color: #2c6b2f;
 }

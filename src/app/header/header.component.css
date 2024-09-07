@@ -1,23 +1,23 @@
-mat-toolbar{
-  background-color: #ADD8E6;
+mat-toolbar {
+  background-color: #add8e6;
 }
 
-.toolbar-icon{
-  color:floralwhite;
+.toolbar-icon {
+  color: floralwhite;
   cursor: pointer;
 }
 
-.toolbar-icon:hover{
+.toolbar-icon:hover {
   color: #043959;
 }
 
-#toolbar-user-icon{
+#toolbar-user-icon {
   position: absolute;
   right: 35px;
 }
 
-.app-name{
-  font-family: 'Trebuchet MS', sans-serif;
+.app-name {
+  font-family: "Trebuchet MS", sans-serif;
   font-size: 30px;
   font-weight: bold;
   color: #043959;

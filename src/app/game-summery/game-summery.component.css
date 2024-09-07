@@ -1,89 +1,82 @@
-/* Overall container style */
 .game-summary-container {
-    text-align: center;
-    margin: 20px auto;
-    width: 90%;
-  }
-  
-  /* Heading styling */
-  h3 {
-    font-family: 'Roboto', sans-serif;
-    font-size: 2.5rem;
-    font-weight: bold;
-    color: #1976D2; /* Deep blue color */
-    margin-bottom: 20px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Subtle shadow */
-  }
-  
-  /* Paragraph styling */
-  p {
-    font-family: 'Roboto', sans-serif;
-    font-size: 1.2rem;
-    color: #2196F3; /* Lighter blue color */
-    margin: 10px 0;
-    padding: 5px;
-  }
-  
-  /* Table styling */
+  text-align: center;
+  margin: 20px auto;
+  width: 90%;
+}
+
+h3 {
+  font-family: "Roboto", sans-serif;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #1976d2;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+p {
+  font-family: "Roboto", sans-serif;
+  font-size: 1.2rem;
+  color: #2196f3;
+  margin: 10px 0;
+  padding: 5px;
+}
+
+table {
+  width: 80%;
+  margin: 20px auto;
+  border-collapse: collapse;
+  background: #ffffff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+th.mat-header-cell,
+td.mat-cell {
+  text-align: center;
+  padding: 12px 16px;
+  font-family: "Roboto", sans-serif;
+}
+
+th.mat-header-cell {
+  background: linear-gradient(135deg, #64b5f6, #1976d2);
+  color: #ffffff;
+  font-weight: bold;
+}
+
+td.mat-cell {
+  background: #fafafa;
+}
+
+tr.mat-row:nth-child(odd) td.mat-cell {
+  background: #f0f0f0;
+}
+
+.mat-icon.wrongAns {
+  color: #e53935;
+  font-size: 24px;
+}
+
+.mat-icon.trueAns {
+  color: #43a047;
+  font-size: 24px;
+}
+
+@media (max-width: 768px) {
   table {
-    width: 80%;
-    margin: 20px auto;
-    border-collapse: collapse;
-    background: #FFFFFF; /* White background */
-    border-radius: 10px;
-    overflow: hidden; /* Rounded corners */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow effect */
+    width: 100%;
   }
-  
-  th.mat-header-cell, td.mat-cell {
-    text-align: center;
-    padding: 12px 16px;
-    font-family: 'Roboto', sans-serif;
-  }
-  
-  /* Header cell styling */
-  th.mat-header-cell {
-    background: linear-gradient(135deg, #64B5F6, #1976D2); /* Gradient blue */
-    color: #FFFFFF; /* White text */
-    font-weight: bold;
-  }
-  
-  /* Cell styling */
+
+  th.mat-header-cell,
   td.mat-cell {
-    background: #FAFAFA; /* Light gray background */
+    font-size: 1rem;
   }
-  
-  tr.mat-row:nth-child(odd) td.mat-cell {
-    background: #F0F0F0; /* Slightly darker gray for alternating rows */
+
+  h3 {
+    font-size: 2rem;
   }
-  
-  /* Icon styling */
-  .mat-icon.wrongAns {
-    color: #E53935; /* Red color */
-    font-size: 24px;
+
+  p {
+    font-size: 1rem;
   }
-  
-  .mat-icon.trueAns {
-    color: #43A047; /* Green color */
-    font-size: 24px;
-  }
-  
-  /* Responsive design */
-  @media (max-width: 768px) {
-    table {
-      width: 100%;
-    }
-  
-    th.mat-header-cell, td.mat-cell {
-      font-size: 1rem;
-    }
-  
-    h3 {
-      font-size: 2rem;
-    }
-  
-    p {
-      font-size: 1rem;
-    }
-  }
-  
+}

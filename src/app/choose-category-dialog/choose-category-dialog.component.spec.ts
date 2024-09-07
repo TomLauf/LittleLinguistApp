@@ -8,10 +8,9 @@ describe('ChooseCategoryDialogComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ChooseCategoryDialogComponent]
-    })
-    .compileComponents();
-    
+      imports: [ChooseCategoryDialogComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(ChooseCategoryDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

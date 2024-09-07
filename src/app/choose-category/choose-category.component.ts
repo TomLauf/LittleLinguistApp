@@ -11,15 +11,26 @@ import { MatButtonModule } from '@angular/material/button';
 @Component({
   selector: 'app-choose-category',
   standalone: true,
-  imports: [MatFormFieldModule, MatOptionModule, MatSelectModule, RouterModule,MatButtonModule],
+  imports: [
+    MatFormFieldModule,
+    MatOptionModule,
+    MatSelectModule,
+    RouterModule,
+    MatButtonModule,
+  ],
   templateUrl: './choose-category.component.html',
-  styleUrl: './choose-category.component.css'
+  styleUrl: './choose-category.component.css',
 })
 export class ChooseCategoryComponent {
   categories: WordCategory[] = [];
-  selectedCategory: WordCategory = new WordCategory(0, "", Language.English, Language.Hebrew);
+  selectedCategory: WordCategory = new WordCategory(
+    0,
+    '',
+    Language.English,
+    Language.Hebrew
+  );
 
   constructor(private categoryManagementService: CategoryManagementService) {
-    this.categories = categoryManagementService.list()
+    this.categories = categoryManagementService.list();
   }
 }

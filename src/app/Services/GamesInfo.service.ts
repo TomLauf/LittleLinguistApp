@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { GameProfile } from '../shared/model/GameProfile';
- 
+
 @Injectable({
   providedIn: 'root',
 })
@@ -47,7 +47,6 @@ export class GamesInfoService {
   }
 
   getGameById(id: number): GameProfile | undefined {
-    return this.games.find(game => game.GameId === id);
+    return this.games.find((game) => game.GameId === id);
   }
-
 }

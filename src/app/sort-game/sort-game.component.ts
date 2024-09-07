@@ -70,17 +70,17 @@ export class SortGameComponent {
         () => Math.random() - 0.5
       );
       firstRandomWordsCurrentCategory = randomWordsCurrentCategory.slice(0, 3);
-    } //3 random words from current category. current = body.
+    }
 
-    this.allCategories = this.categoryManagementService.list(); //fruits, body, colors, feelings
+    this.allCategories = this.categoryManagementService.list();
     let firstRandomWordsRandomCategory: WordsPair[] = [];
 
     if (this.allCategories && this.currentGame) {
       const randomAllCategories = this.allCategories.sort(
         () => Math.random() - 0.5
-      ); //body,colors,fruits, feelings
+      );
 
-      for (let category of randomAllCategories) {
+      for (const category of randomAllCategories) {
         if (
           this.currentCategory?.CategoryId !== category.CategoryId &&
           category.Words.length >= this.currentGame?.MinWordsNo

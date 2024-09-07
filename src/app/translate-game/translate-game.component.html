@@ -9,7 +9,7 @@
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
   <ng-container matColumnDef="EnglishWord">
     <th mat-header-cell *matHeaderCellDef>English Word</th>
-    <td mat-cell *matCellDef="let element">{{ element.Origin }}</td>
+    <td mat-cell *matCellDef="let element">{{ element.origin }}</td>
   </ng-container>
 
   <ng-container matColumnDef="HebrewTranslation">
@@ -18,7 +18,7 @@
       <mat-form-field appearance="outline">
         <input
           matInput
-          [(ngModel)]="element.UserAnswerTry"
+          [(ngModel)]="element.userAnswerTry"
           pattern="[א-ת\s]+"
           required
           #TranslatedWordField="ngModel"
@@ -33,10 +33,10 @@
   <ng-container matColumnDef="CheckAnswer">
     <th mat-header-cell *matHeaderCellDef>Results</th>
     <td mat-cell *matCellDef="let element">
-      <p *ngIf="element.AnswerIsRight === false">
+      <p *ngIf="element.answerIsRight === false">
         <mat-icon class="wrongAns">mood_bad</mat-icon>
       </p>
-      <p *ngIf="element.AnswerIsRight === true">
+      <p *ngIf="element.answerIsRight === true">
         <mat-icon class="trueAns">mood</mat-icon>
       </p>
     </td>
@@ -54,7 +54,7 @@
     </th>
     <td mat-cell *matCellDef="let element">
       <p *ngIf="showTranslation">
-        {{ element.Translated }}
+        {{ element.translated }}
       </p>
     </td>
   </ng-container>

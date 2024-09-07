@@ -8,10 +8,9 @@ describe('TranslateGameComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TranslateGameComponent]
-    })
-    .compileComponents();
-    
+      imports: [TranslateGameComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(TranslateGameComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
