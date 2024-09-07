@@ -14,7 +14,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
   templateUrl: './game-header.component.html',
   styleUrl: './game-header.component.css',
 })
-export class GameHeaderComponent {
+export class GameHeaderComponent implements OnInit {
   GameName = '';
   category: WordCategory | undefined;
 
@@ -24,7 +24,7 @@ export class GameHeaderComponent {
     private router: Router,
     private CategoryManagementService: CategoryManagementService
   ) {
-    let CategoryId = this.route.snapshot.paramMap.get('CategoryId');
+    const CategoryId = this.route.snapshot.paramMap.get('CategoryId');
     if (CategoryId != null) {
       this.category = this.CategoryManagementService.get(parseInt(CategoryId));
     }

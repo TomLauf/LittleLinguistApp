@@ -10,31 +10,51 @@ import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
-import { GameHeaderComponent } from "../game-header/game-header.component";
-
+import { GameHeaderComponent } from '../game-header/game-header.component';
 
 @Component({
   selector: 'app-translate-game',
   standalone: true,
-  imports: [MatFormFieldModule, CommonModule, MatInputModule, MatTableModule, MatIconModule, MatButtonModule,
-    RouterModule, FormsModule, GameHeaderComponent],
+  imports: [
+    MatFormFieldModule,
+    CommonModule,
+    MatInputModule,
+    MatTableModule,
+    MatIconModule,
+    MatButtonModule,
+    RouterModule,
+    FormsModule,
+    GameHeaderComponent,
+  ],
   templateUrl: './translate-game.component.html',
-  styleUrl: './translate-game.component.css'
+  styleUrl: './translate-game.component.css',
 })
 export class TranslateGameComponent implements OnInit {
-
-  currentCategory: WordCategory = new WordCategory(0, "", Language.English, Language.Hebrew);
+  currentCategory: WordCategory = new WordCategory(
+    0,
+    '',
+    Language.English,
+    Language.Hebrew
+  );
   dataSource: any[] = [];
-  displayedColumns: string[] = ['EnglishWord', 'HebrewTranslation', 'CheckAnswer', 'Translated']
-  userAnswerMessage: string = "";
+  displayedColumns: string[] = [
+    'EnglishWord',
+    'HebrewTranslation',
+    'CheckAnswer',
+    'Translated',
+  ];
+  userAnswerMessage: string = '';
   showTranslation: boolean = false;
 
-  constructor(private categoryManagementService: CategoryManagementService, private activatedRoute: ActivatedRoute) { }
+  constructor(
+    private categoryManagementService: CategoryManagementService,
+    private activatedRoute: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
-    let id = this.activatedRoute.snapshot.paramMap.get('CategoryId');
+    const id = this.activatedRoute.snapshot.paramMap.get('CategoryId');
     if (id != null) {
-      let category = this.categoryManagementService.get(parseInt(id));
+      const category = this.categoryManagementService.get(parseInt(id));
       if (category != null) {
         this.currentCategory = category;
         for (let index = 0; index < category.Words.length; index++) {
@@ -43,7 +63,7 @@ export class TranslateGameComponent implements OnInit {
             Origin: wordsPair.Origin,
             Translated: wordsPair.Translated,
             UserAnswerTry: '',
-            AnswerIsRight: null
+            AnswerIsRight: null,
           });
         }
       }
@@ -64,10 +84,14 @@ export class TranslateGameComponent implements OnInit {
     }
 
     if (numOfRightAns == this.dataSource.length) {
-      this.userAnswerMessage = "Well done, You finished!!"
-    }
-    else {
-      this.userAnswerMessage = "You translated " + numOfRightAns + " out of " + this.dataSource.length + " words correctly, try again";
+      this.userAnswerMessage = 'Well done, You finished!!';
+    } else {
+      this.userAnswerMessage =
+        'You translated ' +
+        numOfRightAns +
+        ' out of ' +
+        this.dataSource.length +
+        ' words correctly, try again';
     }
   }
 

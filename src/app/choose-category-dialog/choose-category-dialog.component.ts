@@ -12,24 +12,35 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-choose-category-dialog',
   standalone: true,
-  imports: [CommonModule,MatFormFieldModule,MatSelectModule,MatButtonModule,MatDialogModule],
+  imports: [
+    CommonModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatButtonModule,
+    MatDialogModule,
+  ],
   templateUrl: './choose-category-dialog.component.html',
-  styleUrl: './choose-category-dialog.component.css'
+  styleUrl: './choose-category-dialog.component.css',
 })
-
 export class ChooseCategoryDialogComponent implements OnInit {
-
   categories: WordCategory[] = [];
   public selectedCategory: WordCategory | undefined;
   public errorMessage: string = '';
 
-  constructor(private categoryManagementService: CategoryManagementService, @Inject (MAT_DIALOG_DATA) private game: GameProfile, private router: Router) {}
+  constructor(
+    private categoryManagementService: CategoryManagementService,
+    @Inject(MAT_DIALOG_DATA) private game: GameProfile,
+    private router: Router
+  ) {}
   ngOnInit(): void {
     this.categories = this.categoryManagementService.list();
   }
-  gameName = this.game.GameName
+  gameName = this.game.GameName;
   checkGameReady() {
-    if (this.selectedCategory && this.selectedCategory.Words.length < this.game.MinWordsNo) {
+    if (
+      this.selectedCategory &&
+      this.selectedCategory.Words.length < this.game.MinWordsNo
+    ) {
       this.errorMessage = `Note that at least ${this.game.MinWordsNo} words required.`;
     } else {
       this.errorMessage = '';
@@ -37,10 +48,10 @@ export class ChooseCategoryDialogComponent implements OnInit {
   }
 
   playGame() {
-    if(this.game != undefined && this.selectedCategory != undefined){
-      let gameURL = this.game.GameURL;
-      let category = this.selectedCategory.CategoryId;
+    if (this.game != undefined && this.selectedCategory != undefined) {
+      const gameURL = this.game.GameURL;
+      const category = this.selectedCategory.CategoryId;
       this.router.navigate([gameURL, category]);
     }
-    }
+  }
 }

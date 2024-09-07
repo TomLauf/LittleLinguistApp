@@ -58,7 +58,7 @@ export class MixedWordsGameComponent {
     private gameInfoService: GamesInfoService
   ) {
     // Init game category
-    let CategoryId = this.route.snapshot.paramMap.get('CategoryId');
+    const CategoryId = this.route.snapshot.paramMap.get('CategoryId');
     if (CategoryId != null) {
       this.category = this.CategoryManagementService.get(parseInt(CategoryId));
     }
@@ -82,7 +82,7 @@ export class MixedWordsGameComponent {
   shuffleString(str: string): string {
     let shuffled = str;
     while (shuffled === str) {
-      let arr = str.split('');
+      const arr = str.split('');
       for (let i = arr.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [arr[i], arr[j]] = [arr[j], arr[i]];

@@ -14,19 +14,34 @@ import { CategoryManagementService } from '../Services/category-management.servi
 @Component({
   selector: 'app-category-form',
   standalone: true,
-  imports: [CommonModule, FormsModule, MatFormFieldModule, MatInputModule, MatIconModule, MatButtonModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatIconModule,
+    MatButtonModule,
+  ],
   templateUrl: './category-form.component.html',
-  styleUrl: './category-form.component.css'
+  styleUrl: './category-form.component.css',
 })
 export class CategoryFormComponent {
+  currentCategory: WordCategory = new WordCategory(
+    0,
+    '',
+    Language.English,
+    Language.Hebrew
+  );
 
-  currentCategory: WordCategory = new WordCategory(0, "", Language.English, Language.Hebrew);
-
-  constructor(private categoryManagementService: CategoryManagementService, private activatedRoute: ActivatedRoute, private router: Router) {
-    let id = this.activatedRoute.snapshot.paramMap.get('CategoryId');
+  constructor(
+    private categoryManagementService: CategoryManagementService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router
+  ) {
+    const id = this.activatedRoute.snapshot.paramMap.get('CategoryId');
 
     if (id != null) {
-      let category = this.categoryManagementService.get(parseInt(id));
+      const category = this.categoryManagementService.get(parseInt(id));
       if (category != null) {
         this.currentCategory = category;
       }
@@ -34,26 +49,27 @@ export class CategoryFormComponent {
   }
 
   addWordsPairToCategory() {
-    this.currentCategory.Words.push(new WordsPair("", ""));
+    this.currentCategory.Words.push(new WordsPair('', ''));
   }
 
   deleteWordsPairToCategory(wordsPair: WordsPair) {
-    this.currentCategory.Words = this.currentCategory.Words.filter(wp => wp != wordsPair);
+    this.currentCategory.Words = this.currentCategory.Words.filter(
+      (wp) => wp != wordsPair
+    );
   }
 
-    saveCategory(){
-      if(this.currentCategory.Words.length == 0){
-        alert("you must have at least one pair of words!");
-        return;
-      }
-    if(this.currentCategory.CategoryId == 0){
-      this.categoryManagementService.add(this.currentCategory);
-      console.log("add", this.currentCategory);
-    }else{
-      this.categoryManagementService.update(this.currentCategory);
-      console.log("update", this.currentCategory);
-
+  saveCategory() {
+    if (this.currentCategory.Words.length == 0) {
+      alert('you must have at least one pair of words!');
+      return;
     }
-    this.router.navigate(["/Admin"]);
+    if (this.currentCategory.CategoryId == 0) {
+      this.categoryManagementService.add(this.currentCategory);
+      console.log('add', this.currentCategory);
+    } else {
+      this.categoryManagementService.update(this.currentCategory);
+      console.log('update', this.currentCategory);
+    }
+    this.router.navigate(['/Admin']);
   }
 }
