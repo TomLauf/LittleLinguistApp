@@ -9,22 +9,38 @@ import { ActivatedRoute } from '@angular/router';
   standalone: true,
   imports: [MatTableModule, MatIconModule, CommonModule],
   templateUrl: './game-summery.component.html',
-  styleUrl: './game-summery.component.css'
+  styleUrl: './game-summery.component.css',
 })
-export class GameSummeryComponent implements OnInit{
-  constructor(private route: ActivatedRoute){}
+export class GameSummeryComponent implements OnInit {
+  constructor(private route: ActivatedRoute) {}
 
   gameName!: string;
   @Input() points!: number;
   @Input() numCorrectAns!: number;
   @Input() allAns!: number;
-  @Input() mixedWordsGameResults!: { origin: string; target: string; isCorrect: boolean }[];
-  @Input() sortWordsGameResults!: { origin: string; currentGameCategory: string | undefined; trueWordCategory:string | undefined; guess: string; isCorrect: boolean }[];
+  @Input() mixedWordsGameResults!: {
+    origin: string;
+    target: string;
+    isCorrect: boolean;
+  }[];
+  @Input() sortWordsGameResults!: {
+    origin: string;
+    currentGameCategory: string | undefined;
+    trueWordCategory: string | undefined;
+    guess: string;
+    isCorrect: boolean;
+  }[];
 
   mixedWordsGameResultsColumns: string[] = ['Origin', 'Target', 'Results'];
-  sortWordsGameResultsColumns: string[] = ['Origin', 'currentGameCategory','trueWordCategory', 'Guess','Results'];
+  sortWordsGameResultsColumns: string[] = [
+    'Origin',
+    'currentGameCategory',
+    'trueWordCategory',
+    'Guess',
+    'Results',
+  ];
 
-ngOnInit(): void {
+  ngOnInit(): void {
     this.gameName = this.route.snapshot.url[0]?.path;
-    }
+  }
 }

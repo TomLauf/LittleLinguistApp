@@ -7,42 +7,45 @@ import { CategoryManagementService } from '../Services/category-management.servi
 import { WordCategory } from '../shared/model/WordCategory';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
-
 @Component({
   selector: 'app-game-header',
   standalone: true,
-  imports: [MatIconModule,MatToolbarModule],
+  imports: [MatIconModule, MatToolbarModule],
   templateUrl: './game-header.component.html',
-  styleUrl: './game-header.component.css'
+  styleUrl: './game-header.component.css',
 })
 export class GameHeaderComponent {
-  GameName = "";
+  GameName = '';
   category: WordCategory | undefined;
 
-  constructor(private route: ActivatedRoute, private dialog:MatDialog, private router: Router, private CategoryManagementService: CategoryManagementService) {
+  constructor(
+    private route: ActivatedRoute,
+    private dialog: MatDialog,
+    private router: Router,
+    private CategoryManagementService: CategoryManagementService
+  ) {
     let CategoryId = this.route.snapshot.paramMap.get('CategoryId');
-    if (CategoryId != null){
+    if (CategoryId != null) {
       this.category = this.CategoryManagementService.get(parseInt(CategoryId));
     }
   }
 
   ngOnInit(): void {
     const URLGameName = this.route.snapshot.url[0]?.path;
-      this.GameName = this.formatGameName(URLGameName);
-    }
-  
-    formatGameName(name: string): string {
-      return name.replace(/([A-Z])/g, ' $1').trim();
-    }
+    this.GameName = this.formatGameName(URLGameName);
+  }
 
-    openExitGameDialog(): void {
-      const dialogRef = this.dialog.open(ExitGameDialogComponent);
-  
-      dialogRef.afterClosed().subscribe(result => {
-        if (result) {
-          this.router.navigate(['/chooseGame']);
-        }
-      });
-    }
-  }  
+  formatGameName(name: string): string {
+    return name.replace(/([A-Z])/g, ' $1').trim();
+  }
 
+  openExitGameDialog(): void {
+    const dialogRef = this.dialog.open(ExitGameDialogComponent);
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.router.navigate(['/chooseGame']);
+      }
+    });
+  }
+}

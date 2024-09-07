@@ -13,8 +13,8 @@ import { FormsModule } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { GamePointsComponent } from "../game-points/game-points.component";
-import { GameSummeryComponent } from "../game-summery/game-summery.component";
+import { GamePointsComponent } from '../game-points/game-points.component';
+import { GameSummeryComponent } from '../game-summery/game-summery.component';
 
 @Component({
   selector: 'app-mixed-words-game',
@@ -29,8 +29,8 @@ import { GameSummeryComponent } from "../game-summery/game-summery.component";
     MatIconModule,
     MatProgressBarModule,
     GamePointsComponent,
-    GameSummeryComponent
-],
+    GameSummeryComponent,
+  ],
   templateUrl: './mixed-words-game.component.html',
   styleUrl: './mixed-words-game.component.css',
 })
@@ -103,7 +103,9 @@ export class MixedWordsGameComponent {
   checkAnswer() {
     this.showGameButtons = false;
     const currentWord = this.mixedWords[this.wordIndex];
-    const isCorrect = currentWord.origin.toLocaleLowerCase() === this.inputValue.toLocaleLowerCase();
+    const isCorrect =
+      currentWord.origin.toLocaleLowerCase() ===
+      this.inputValue.toLocaleLowerCase();
 
     if (isCorrect) {
       this.message = 'YAY! Correct Answer!';
@@ -122,8 +124,8 @@ export class MixedWordsGameComponent {
 
     if (this.wordIndex < this.mixedWords.length - 1) {
       setTimeout(() => {
-      this.wordIndex++;
-      this.progressValue = this.calculateProgressValue();
+        this.wordIndex++;
+        this.progressValue = this.calculateProgressValue();
         this.message = '';
         this.inputValue = '';
         this.showGameButtons = true;
