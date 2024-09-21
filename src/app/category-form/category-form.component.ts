@@ -27,7 +27,7 @@ import { CategoryManagementService } from '../Services/category-management.servi
 })
 export class CategoryFormComponent {
   currentCategory: WordCategory = new WordCategory(
-    0,
+    '',
     '',
     Language.English,
     Language.Hebrew
@@ -41,7 +41,7 @@ export class CategoryFormComponent {
     const id = this.activatedRoute.snapshot.paramMap.get('CategoryId');
 
     if (id != null) {
-      const category = this.categoryManagementService.get(parseInt(id));
+      const category = this.categoryManagementService.get(id);
       if (category != null) {
         this.currentCategory = category;
       }
@@ -49,21 +49,21 @@ export class CategoryFormComponent {
   }
 
   addWordsPairToCategory() {
-    this.currentCategory.Words.push(new WordsPair('', ''));
+    this.currentCategory.words.push(new WordsPair('', ''));
   }
 
   deleteWordsPairToCategory(wordsPair: WordsPair) {
-    this.currentCategory.Words = this.currentCategory.Words.filter(
+    this.currentCategory.words = this.currentCategory.words.filter(
       (wp) => wp != wordsPair
     );
   }
 
   saveCategory() {
-    if (this.currentCategory.Words.length == 0) {
+    if (this.currentCategory.words.length == 0) {
       alert('you must have at least one pair of words!');
       return;
     }
-    if (this.currentCategory.CategoryId == 0) {
+    if (this.currentCategory.categoryId == '') {
       this.categoryManagementService.add(this.currentCategory);
       console.log('add', this.currentCategory);
     } else {
