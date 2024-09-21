@@ -9,16 +9,16 @@
       required
     >
       <mat-option *ngFor="let category of categories" [value]="category">{{
-        category.CategoryName
+        category.categoryName
       }}</mat-option>
     </mat-select>
   </mat-form-field>
   <p *ngIf="this.selectedCategory !== undefined">
-    {{ selectedCategory.Words.length }} words
+    {{ selectedCategory.words.length }} words
   </p>
   <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
   <p *ngIf="this.selectedCategory !== undefined">
-    Last update:{{ selectedCategory.LastUpdate | date : "dd/MM/yyyy" }}
+    Last update:{{ selectedCategory.lastUpdate | date : "dd/MM/yyyy" }}
   </p>
 </div>
 <div mat-dialog-actions>
