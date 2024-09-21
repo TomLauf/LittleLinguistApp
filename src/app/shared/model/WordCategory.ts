@@ -2,7 +2,7 @@ import { Language } from './Language';
 import { WordsPair } from './WordsPair';
 
 export class WordCategory {
-  categoryId: string;
+  public categoryId: string;
   categoryName: string;
   lastUpdate = new Date();
   originLanguage: Language;

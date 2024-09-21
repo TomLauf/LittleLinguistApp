@@ -3,7 +3,7 @@
 <div *ngIf="isGameOn; else gameFinished" class="game">
   <h1 class="gameQues">
     Is "{{ wordsToSort[wordIndex].Origin }}" part of
-    {{ currentCategory?.CategoryName }} category?
+    {{ currentCategory?.categoryName }} category?
   </h1>
   <div class="game-content">
     <p *ngIf="message" class="message">{{ message }}</p>

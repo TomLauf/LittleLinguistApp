@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { WordCategory } from '../shared/model/WordCategory';
-import { Firestore } from '@angular/fire/firestore';
+import { addDoc, collection, Firestore } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CategoryManagementService {
-  constructor(private firestorreService: Firestore) {}
+  constructor(private firestoreService: Firestore) {}
+
   list(): WordCategory[] {
     return [];
   }
@@ -15,7 +16,12 @@ export class CategoryManagementService {
     return undefined;
   }
 
-  add(newCategory: WordCategory) {}
+  async add(newWordCategoryData: WordCategory) {
+    await addDoc(
+      collection(this.firestoreService, 'categories'),
+      newWordCategoryData
+    );
+  }
 
   update(existingCategory: WordCategory): void {}
 

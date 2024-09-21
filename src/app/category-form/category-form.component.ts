@@ -64,7 +64,9 @@ export class CategoryFormComponent {
       return;
     }
     if (this.currentCategory.categoryId == '') {
-      this.categoryManagementService.add(this.currentCategory);
+      this.categoryManagementService.add(this.currentCategory).then(() => {
+        this.router.navigate(['/Admin']);
+      });
       console.log('add', this.currentCategory);
     } else {
       this.categoryManagementService.update(this.currentCategory);

@@ -57,16 +57,14 @@ export class SortGameComponent {
   ) {
     const categoryId = this.route.snapshot.paramMap.get('CategoryId');
     if (categoryId != null) {
-      this.currentCategory = this.categoryManagementService.get(
-        parseInt(categoryId)
-      );
+      this.currentCategory = this.categoryManagementService.get(categoryId);
     }
 
     this.currentGame = this.gameInfoService.getGameById(2);
 
     let firstRandomWordsCurrentCategory: WordsPair[] = [];
     if (this.currentCategory) {
-      const randomWordsCurrentCategory = this.currentCategory.Words.sort(
+      const randomWordsCurrentCategory = this.currentCategory.words.sort(
         () => Math.random() - 0.5
       );
       firstRandomWordsCurrentCategory = randomWordsCurrentCategory.slice(0, 3);
@@ -82,8 +80,8 @@ export class SortGameComponent {
 
       for (const category of randomAllCategories) {
         if (
-          this.currentCategory?.CategoryId !== category.CategoryId &&
-          category.Words.length >= this.currentGame?.MinWordsNo
+          this.currentCategory?.categoryId !== category.categoryId &&
+          category.words.length >= this.currentGame?.MinWordsNo
         ) {
           this.randomCategory = category;
           break;
@@ -91,7 +89,7 @@ export class SortGameComponent {
       }
 
       if (this.randomCategory) {
-        const randomWordsRandomCategory = this.randomCategory.Words.sort(
+        const randomWordsRandomCategory = this.randomCategory.words.sort(
           () => Math.random() - 0.5
         );
         firstRandomWordsRandomCategory = randomWordsRandomCategory.slice(0, 3);
@@ -111,7 +109,7 @@ export class SortGameComponent {
     this.userAnswer = answer;
 
     const currentWord = this.wordsToSort[this.wordIndex];
-    const isInCategory = this.currentCategory?.Words.some(
+    const isInCategory = this.currentCategory?.words.some(
       (word) => word.Origin === currentWord.Origin
     );
     if (this.userAnswer) {
@@ -130,8 +128,8 @@ export class SortGameComponent {
       this.numCorrectAns++;
       this.gameResults.push({
         origin: currentWord.Origin,
-        currentGameCategory: this.currentCategory?.CategoryName,
-        trueWordCategory: this.trueCategory?.CategoryName,
+        currentGameCategory: this.currentCategory?.categoryName,
+        trueWordCategory: this.trueCategory?.categoryName,
         guess: this.ansForResult,
         isCorrect: true,
       });
@@ -139,8 +137,8 @@ export class SortGameComponent {
       this.message = 'Sorry, Wrong answer!';
       this.gameResults.push({
         origin: currentWord.Origin,
-        currentGameCategory: this.currentCategory?.CategoryName,
-        trueWordCategory: this.trueCategory?.CategoryName,
+        currentGameCategory: this.currentCategory?.categoryName,
+        trueWordCategory: this.trueCategory?.categoryName,
         guess: this.ansForResult,
         isCorrect: false,
       });

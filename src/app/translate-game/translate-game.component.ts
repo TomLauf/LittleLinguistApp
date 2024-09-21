@@ -38,7 +38,7 @@ interface TranslationData {
 })
 export class TranslateGameComponent implements OnInit {
   currentCategory: WordCategory = new WordCategory(
-    0,
+    '',
     '',
     Language.English,
     Language.Hebrew
@@ -62,11 +62,11 @@ export class TranslateGameComponent implements OnInit {
   ngOnInit(): void {
     const id = this.activatedRoute.snapshot.paramMap.get('CategoryId');
     if (id != null) {
-      const category = this.categoryManagementService.get(parseInt(id));
+      const category = this.categoryManagementService.get(id);
       if (category != null) {
         this.currentCategory = category;
-        for (let index = 0; index < category.Words.length; index++) {
-          const wordsPair = category.Words[index];
+        for (let index = 0; index < category.words.length; index++) {
+          const wordsPair = category.words[index];
           this.dataSource.push({
             origin: wordsPair.Origin,
             translated: wordsPair.Translated,
