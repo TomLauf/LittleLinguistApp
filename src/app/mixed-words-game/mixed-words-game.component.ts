@@ -60,13 +60,13 @@ export class MixedWordsGameComponent {
     // Init game category
     const CategoryId = this.route.snapshot.paramMap.get('CategoryId');
     if (CategoryId != null) {
-      this.category = this.CategoryManagementService.get(parseInt(CategoryId));
+      this.category = this.CategoryManagementService.get(CategoryId);
     }
 
     // Init game words
     this.currentGame = this.gameInfoService.getGameById(3);
     if (this.category) {
-      const categoryWords = this.category.Words;
+      const categoryWords = this.category.words;
       for (const word of categoryWords) {
         this.mixedWords.push(
           new MixedWord(

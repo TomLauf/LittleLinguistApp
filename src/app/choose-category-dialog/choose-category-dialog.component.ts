@@ -39,7 +39,7 @@ export class ChooseCategoryDialogComponent implements OnInit {
   checkGameReady() {
     if (
       this.selectedCategory &&
-      this.selectedCategory.Words.length < this.game.MinWordsNo
+      this.selectedCategory.words.length < this.game.MinWordsNo
     ) {
       this.errorMessage = `Note that at least ${this.game.MinWordsNo} words required.`;
     } else {
@@ -50,7 +50,7 @@ export class ChooseCategoryDialogComponent implements OnInit {
   playGame() {
     if (this.game != undefined && this.selectedCategory != undefined) {
       const gameURL = this.game.GameURL;
-      const category = this.selectedCategory.CategoryId;
+      const category = this.selectedCategory.categoryId;
       this.router.navigate([gameURL, category]);
     }
   }

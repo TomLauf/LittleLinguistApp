@@ -24,7 +24,7 @@ import { MatButtonModule } from '@angular/material/button';
 export class ChooseCategoryComponent {
   categories: WordCategory[] = [];
   selectedCategory: WordCategory = new WordCategory(
-    0,
+    '',
     '',
     Language.English,
     Language.Hebrew
