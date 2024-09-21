@@ -1,0 +1,6 @@
+V 1. FireBase is not working. tried to install it and got an error. 
+2. Why does the exit game dialog looks different than the choose category and delete category dialogs?
+3. The little linguist on header should route the user to the dashboard. what should happens if the user is in a game and click on it?
+V 4. Is using dialog in the user answer feedboack a must?
+5. Problem with sync to Git.
+6. Is make game summery a seperate component is recommended?

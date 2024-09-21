@@ -1,0 +1,50 @@
+<app-game-header></app-game-header>
+<app-game-points [points]="getRoundedPoints()"></app-game-points>
+<div *ngIf="isGameOn; else gameFinished" class="game">
+  <h1 class="gameQues">
+    Is "{{ wordsToSort[wordIndex].Origin }}" part of
+    {{ currentCategory?.CategoryName }} category?
+  </h1>
+  <div class="game-content">
+    <p *ngIf="message" class="message">{{ message }}</p>
+    <div class="gameBtns">
+      <button
+        mat-button
+        *ngIf="showGameButtons"
+        (click)="checkAnswer(true)"
+        value="yes"
+        class="btn"
+      >
+        Yes
+      </button>
+      <button
+        mat-button
+        *ngIf="showGameButtons"
+        (click)="checkAnswer(false)"
+        value="no"
+        class="btn"
+      >
+        No
+      </button>
+    </div>
+    <div class="progress-bar-container">
+      <span>{{ wordIndex }}</span>
+      <mat-progress-bar
+        mode="determinate"
+        [value]="progressValue"
+      ></mat-progress-bar>
+      <span>{{ wordsToSort.length }}</span>
+    </div>
+  </div>
+</div>
+
+<ng-template #gameFinished>
+  <app-game-summery
+    [points]="points"
+    [numCorrectAns]="numCorrectAns"
+    [allAns]="wordsToSort.length"
+    [sortWordsGameResults]="gameResults"
+  >
+  </app-game-summery>
+  <button mat-button (click)="newGame()" class="newGameBtn">New Game</button>
+</ng-template>

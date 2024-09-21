@@ -1,0 +1,14 @@
+.toolbar {
+  background-color: #add8e6;
+}
+
+.toolbar-icon {
+  color: floralwhite;
+  position: absolute;
+  right: 35px;
+  cursor: pointer;
+}
+
+.toolbar-icon:hover {
+  color: #043959;
+}

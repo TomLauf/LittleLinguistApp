@@ -1,0 +1,117 @@
+app-game-header {
+  position: fixed;
+  top: 8%;
+  width: 100%;
+}
+
+app-game-points {
+  top: 50px;
+  position: relative;
+}
+
+.game {
+  text-align: center;
+  width: 100%;
+  margin: 1em auto;
+  padding-top: calc(8% + 1em);
+}
+
+.word {
+  text-decoration: wavy;
+}
+
+.mixedWord {
+  letter-spacing: 10px;
+}
+
+.game-content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  align-items: center;
+  min-height: 200px;
+}
+
+.input {
+  padding: 0.5em;
+  padding-left: 1em;
+  width: 250px;
+  height: 20px;
+  border: 3px soild #043959;
+}
+
+.gameBtns {
+  display: flex;
+  gap: 0.5em;
+}
+
+.btn {
+  margin-top: 1em;
+  background-color: rgba(241, 186, 65, 1);
+  color: floralwhite;
+  font-size: 1em;
+  text-align: center;
+  border-radius: 8px;
+  width: 135px;
+  height: 40px;
+  border: none;
+}
+
+.btn:hover {
+  margin-top: 1em;
+  background-color: rgba(242, 160, 62, 1);
+}
+
+.btn:disabled {
+  margin-top: 1em;
+  background-color: rgb(202, 202, 202);
+  color: grey;
+  cursor: default;
+}
+
+.message {
+  padding: 0.3em;
+  margin: 0.3em;
+  width: 100%;
+  max-width: 500px;
+  text-align: center;
+}
+
+.progress-bar-container {
+  width: 100%;
+  max-width: 500px;
+  padding-top: 1em;
+  display: flex;
+  justify-content: center;
+  gap: 0.5em;
+  height: 40px;
+  align-items: center;
+  position: relative;
+}
+
+app-game-summery {
+  text-align: center;
+  width: 100%;
+  margin: 1em auto;
+  padding-top: calc(8% + 5em);
+}
+
+.newGameBtn {
+  background-color: rgba(241, 186, 65, 1);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 15px 30px;
+  font-size: 1.2rem;
+  font-family: "Trebuchet MS", sans-serif;
+  font-size: 30px;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.newGameBtn:hover {
+  background-color: rgba(242, 160, 62, 1);
+  transform: scale(1.05);
+  cursor: pointer;
+}
