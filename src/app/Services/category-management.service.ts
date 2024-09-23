@@ -1,6 +1,15 @@
 import { Injectable } from '@angular/core';
 import { WordCategory } from '../shared/model/WordCategory';
-import { addDoc, collection, Firestore } from '@angular/fire/firestore';
+import {
+  addDoc,
+  collection,
+  Firestore,
+  getDocs,
+  QuerySnapshot,
+  DocumentSnapshot,
+  doc,
+} from '@angular/fire/firestore';
+import { categoriesConverter } from './converters/categories-converters';
 
 @Injectable({
   providedIn: 'root',
@@ -8,24 +17,54 @@ import { addDoc, collection, Firestore } from '@angular/fire/firestore';
 export class CategoryManagementService {
   constructor(private firestoreService: Firestore) {}
 
-  list(): WordCategory[] {
-    return [];
+  async list(): Promise<WordCategory[]> {
+    const categoriesCollection = collection(
+      this.firestoreService,
+      'categories'
+    ).withConverter(categoriesConverter);
+
+    const querySnapshot: QuerySnapshot<WordCategory> = await getDocs(
+      categoriesCollection
+    );
+
+    const result: WordCategory[] = [];
+
+    querySnapshot.docs.forEach((docSnap: DocumentSnapshot<WordCategory>) => {
+      const data = docSnap.data();
+      if (data) {
+        result.push(data);
+      }
+    });
+
+    return result;
   }
 
-  get(Id: string): WordCategory | undefined {
+  get(id: string): WordCategory | undefined {
     return undefined;
   }
 
   async add(newWordCategoryData: WordCategory) {
-    await addDoc(
-      collection(this.firestoreService, 'categories'),
-      newWordCategoryData
-    );
+    const categoriesCollection = collection(
+      this.firestoreService,
+      'categories'
+    ).withConverter(categoriesConverter);
+    await addDoc(categoriesCollection, newWordCategoryData);
   }
 
-  update(existingCategory: WordCategory): void {}
+  update(existingCategory: WordCategory): void {
+    async get(id: string) :Promise <WordCategory | undefined> {
+     const categoriesDocRef = doc(this.firestoreService, 'categories',
+      id).withConverter(
+        categoriesConverter
+      );
+      return (await getDoc(categoriesDocRef)).data();
+    }
+  }
 
-  delete(existingCategory: WordCategory): void {}
+  delete(existingCategoryId: string): void {
+
+    
+  }
 
   // getNextId() {
   //   let nextId = 0;

@@ -23,9 +23,11 @@ import { Router } from '@angular/router';
   styleUrl: './choose-category-dialog.component.css',
 })
 export class ChooseCategoryDialogComponent implements OnInit {
+  isFullyLoaded = false;
   categories: WordCategory[] = [];
   public selectedCategory: WordCategory | undefined;
   public errorMessage: string = '';
+  allCategories: WordCategory[];
 
   constructor(
     private categoryManagementService: CategoryManagementService,
@@ -33,7 +35,10 @@ export class ChooseCategoryDialogComponent implements OnInit {
     private router: Router
   ) {}
   ngOnInit(): void {
-    this.categories = this.categoryManagementService.list();
+    this.categoryManagementService.list().then((result: WordCategory[]) => {
+      this.allCategories = result;
+      this.isFullyLoaded = true;
+    });
   }
   gameName = this.game.GameName;
   checkGameReady() {

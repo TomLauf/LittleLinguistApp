@@ -31,6 +31,8 @@ export class ChooseCategoryComponent {
   );
 
   constructor(private categoryManagementService: CategoryManagementService) {
-    this.categories = categoryManagementService.list();
+    categoryManagementService.list().then((result: WordCategory[]) => {
+      this.allCategories = result;
+    });
   }
 }

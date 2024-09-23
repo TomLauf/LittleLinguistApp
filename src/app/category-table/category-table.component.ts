@@ -46,7 +46,9 @@ export class CategoryTableComponent {
     dialogRef.afterClosed().subscribe((deleteConfirmed) => {
       if (deleteConfirmed) {
         this.categoryManagementService.delete(category.Id);
-        this.dataSource = this.categoryManagementService.list();
+        this.categoryManagementService.list().then((result: WordCategory[]) => {
+          this.allCategories = result;
+        });
       }
     });
   }

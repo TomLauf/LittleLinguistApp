@@ -31,6 +31,20 @@ export class CategoryFormComponent {
     '',
     Language.English,
     Language.Hebrew
+
+    ngOnInit(): void {
+      if (this.id) {
+        this.categoryManagementServiceService.get(this.id).then(
+          (categoryFromService) => {
+            if (categoryFromService) {
+              this.currentCategory = categoryFromService;
+            }
+          }
+        );
+      }
+    }
+    ...
+   }
   );
 
   constructor(
