@@ -11,6 +11,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
 import { GameHeaderComponent } from '../game-header/game-header.component';
+import { GameResultService } from '../Services/game-result.service';
+import { GameResult } from '../shared/model/GameResult';
 
 interface TranslationData {
   origin: string;
@@ -56,29 +58,34 @@ export class TranslateGameComponent implements OnInit {
 
   constructor(
     private categoryManagementService: CategoryManagementService,
+    private gameResultService: GameResultService,
     private activatedRoute: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-    const id = this.activatedRoute.snapshot.paramMap.get('CategoryId');
+    const id = this.activatedRoute.snapshot.paramMap.get('categoryId');
     if (id != null) {
-      const category = this.categoryManagementService.get(id);
-      if (category != null) {
-        this.currentCategory = category;
-        for (let index = 0; index < category.words.length; index++) {
-          const wordsPair = category.words[index];
-          this.dataSource.push({
-            origin: wordsPair.Origin,
-            translated: wordsPair.Translated,
-            userAnswerTry: '',
-            answerIsRight: null,
-          });
+      this.categoryManagementService.get(id).then((category) => {
+        if (category) {
+          this.currentCategory = category;
+          const words = [];
+          for (let index = 0; index < category.words.length; index++) {
+            const wordsPair = category.words[index];
+            words.push({
+              origin: wordsPair.Origin,
+              translated: wordsPair.Translated,
+              userAnswerTry: '',
+              answerIsRight: null,
+            });
+          }
+
+          this.dataSource = words;
         }
-      }
+      });
     }
   }
 
-  checkUserAnswers() {
+  async checkUserAnswers() {
     let numOfRightAns = 0;
 
     for (let index = 0; index < this.dataSource.length; index++) {
@@ -100,6 +107,13 @@ export class TranslateGameComponent implements OnInit {
         ' out of ' +
         this.dataSource.length +
         ' words correctly, try again';
+    }
+
+    if (this.currentCategory) {
+      const points = Math.floor((numOfRightAns / this.dataSource.length) * 100);
+      await this.gameResultService.addGameResult(
+        new GameResult('', this.currentCategory.id, 'Translate', points)
+      );
     }
   }
 

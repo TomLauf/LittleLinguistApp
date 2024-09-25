@@ -1,1 +1,14 @@
-<p>dashboard works!</p>
+<header class="dashboard-header">Your Learnings:</header>
+<div class="dashboard-cards-container">
+  <mat-card
+    class="dashboard-card"
+    appearance="outlined"
+    *ngFor="let stat of stats"
+  >
+    <mat-card-content>{{ stat.value }}</mat-card-content>
+    <br />
+    <mat-card-title class="dashboard-card-title">{{
+      stat.name
+    }}</mat-card-title>
+  </mat-card>
+</div>

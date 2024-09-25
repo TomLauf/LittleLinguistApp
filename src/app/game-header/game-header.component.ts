@@ -24,9 +24,11 @@ export class GameHeaderComponent implements OnInit {
     private router: Router,
     private CategoryManagementService: CategoryManagementService
   ) {
-    const CategoryId = this.route.snapshot.paramMap.get('CategoryId');
-    if (CategoryId != null) {
-      this.category = this.CategoryManagementService.get(CategoryId);
+    const id = this.route.snapshot.paramMap.get('categoryId');
+    if (id != null) {
+      this.CategoryManagementService.get(id).then((category) => {
+        this.category = category;
+      });
     }
   }
 

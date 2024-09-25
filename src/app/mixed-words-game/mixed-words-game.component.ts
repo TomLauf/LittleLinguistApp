@@ -15,6 +15,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { GamePointsComponent } from '../game-points/game-points.component';
 import { GameSummeryComponent } from '../game-summery/game-summery.component';
+import { GameResultService } from '../Services/game-result.service';
+import { GameResult } from '../shared/model/GameResult';
 
 @Component({
   selector: 'app-mixed-words-game',
@@ -55,27 +57,30 @@ export class MixedWordsGameComponent {
   constructor(
     private route: ActivatedRoute,
     private CategoryManagementService: CategoryManagementService,
+    private gameResultService: GameResultService,
     private gameInfoService: GamesInfoService
   ) {
     // Init game category
-    const CategoryId = this.route.snapshot.paramMap.get('CategoryId');
-    if (CategoryId != null) {
-      this.category = this.CategoryManagementService.get(CategoryId);
-    }
+    const id = this.route.snapshot.paramMap.get('categoryId');
+    if (id != null) {
+      this.CategoryManagementService.get(id).then((category) => {
+        this.category = category;
 
-    // Init game words
-    this.currentGame = this.gameInfoService.getGameById(3);
-    if (this.category) {
-      const categoryWords = this.category.words;
-      for (const word of categoryWords) {
-        this.mixedWords.push(
-          new MixedWord(
-            word.Origin,
-            this.shuffleString(word.Origin).toUpperCase(),
-            word.Translated
-          )
-        );
-      }
+        // Init game words
+        this.currentGame = this.gameInfoService.getGameById(3);
+        if (this.category) {
+          const categoryWords = this.category.words;
+          for (const word of categoryWords) {
+            this.mixedWords.push(
+              new MixedWord(
+                word.Origin,
+                this.shuffleString(word.Origin).toUpperCase(),
+                word.Translated
+              )
+            );
+          }
+        }
+      });
     }
   }
 
@@ -100,7 +105,7 @@ export class MixedWordsGameComponent {
     return /^[a-zA-Z]+$/.test(this.inputValue);
   }
 
-  checkAnswer() {
+  async checkAnswer() {
     this.showGameButtons = false;
     const currentWord = this.mixedWords[this.wordIndex];
     const isCorrect =
@@ -133,6 +138,10 @@ export class MixedWordsGameComponent {
     } else {
       this.points = Math.floor(this.points);
       this.isGameOn = false;
+      if (this.category)
+        await this.gameResultService.addGameResult(
+          new GameResult('', this.category.id, 'Mixed-Words', this.points)
+        );
     }
   }
 

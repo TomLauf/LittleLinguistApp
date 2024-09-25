@@ -38,13 +38,16 @@ export class CategoryFormComponent {
     private activatedRoute: ActivatedRoute,
     private router: Router
   ) {
-    const id = this.activatedRoute.snapshot.paramMap.get('CategoryId');
+    const id = this.activatedRoute.snapshot.paramMap.get('categoryId');
 
     if (id != null) {
-      const category = this.categoryManagementService.get(id);
-      if (category != null) {
-        this.currentCategory = category;
-      }
+      this.categoryManagementService.get(id).then((category) => {
+        if (category) {
+          console.log(category);
+
+          this.currentCategory = category;
+        }
+      });
     }
   }
 
@@ -63,15 +66,16 @@ export class CategoryFormComponent {
       alert('you must have at least one pair of words!');
       return;
     }
-    if (this.currentCategory.categoryId == '') {
+    if (this.currentCategory.id == '') {
       this.categoryManagementService.add(this.currentCategory).then(() => {
         this.router.navigate(['/Admin']);
+        console.log('add', this.currentCategory);
       });
-      console.log('add', this.currentCategory);
     } else {
-      this.categoryManagementService.update(this.currentCategory);
-      console.log('update', this.currentCategory);
+      this.categoryManagementService.update(this.currentCategory).then(() => {
+        this.router.navigate(['/Admin']);
+        console.log('update', this.currentCategory);
+      });
     }
-    this.router.navigate(['/Admin']);
   }
 }

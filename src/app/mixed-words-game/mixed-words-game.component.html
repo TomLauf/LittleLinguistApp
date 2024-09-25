@@ -1,8 +1,8 @@
 <app-game-header></app-game-header>
 <app-game-points [points]="getRoundedPoints()"></app-game-points>
 <div *ngIf="isGameOn; else gameFinished" class="game">
-  <h1 class="word">{{ mixedWords[wordIndex].translated }}</h1>
-  <h3 class="mixedWord">{{ mixedWords[wordIndex].mixed }}</h3>
+  <h1 class="word">{{ mixedWords[wordIndex]?.translated }}</h1>
+  <h3 class="mixedWord">{{ mixedWords[wordIndex]?.mixed }}</h3>
 
   <div class="game-content">
     <input

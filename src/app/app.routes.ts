@@ -16,10 +16,10 @@ export const routes: Routes = [
   { path: 'chooseGame', component: ChooseGameComponent },
   { path: 'help', component: HelpComponent },
   { path: 'newCategory', component: CategoryFormComponent },
-  { path: 'Category/:CategoryId', component: CategoryFormComponent },
-  { path: 'MixedWordsGame/:CategoryId', component: MixedWordsGameComponent },
-  { path: 'SortGame/:CategoryId', component: SortGameComponent },
-  { path: 'TranslateGame/:CategoryId', component: TranslateGameComponent }, //old
-  { path: 'TriviaGame/:CategoryId', component: TriviaGameComponent },
-  { path: 'chooseCategory/:CategoryId', component: ChooseCategoryComponent }, //old
+  { path: 'Category/:categoryId', component: CategoryFormComponent },
+  { path: 'MixedWordsGame/:categoryId', component: MixedWordsGameComponent },
+  { path: 'SortGame/:categoryId', component: SortGameComponent },
+  { path: 'TranslateGame/:categoryId', component: TranslateGameComponent }, //old
+  { path: 'TriviaGame/:categoryId', component: TriviaGameComponent },
+  { path: 'chooseCategory/:categoryId', component: ChooseCategoryComponent }, //old
 ];

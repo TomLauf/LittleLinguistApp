@@ -24,9 +24,9 @@ import { DeleteCategoryDialogComponent } from '../delete-category-dialog/delete-
 })
 export class CategoryTableComponent {
   displayedColumns: string[] = [
-    'CategoryName',
+    'categoryName',
     'NumOfWords',
-    'LastUpdate',
+    'lastUpdate',
     'Actions',
   ];
   dataSource: WordCategory[] = [];
@@ -35,7 +35,9 @@ export class CategoryTableComponent {
     private categoryManagementService: CategoryManagementService,
     private dialog: MatDialog
   ) {
-    this.dataSource = this.categoryManagementService.list();
+    this.categoryManagementService.list().then((categories) => {
+      this.dataSource = categories;
+    });
   }
 
   deleteCategory(category: WordCategory): void {
@@ -45,8 +47,11 @@ export class CategoryTableComponent {
 
     dialogRef.afterClosed().subscribe((deleteConfirmed) => {
       if (deleteConfirmed) {
-        this.categoryManagementService.delete(category.Id);
-        this.dataSource = this.categoryManagementService.list();
+        this.categoryManagementService.delete(category.id).then(() => {
+          this.categoryManagementService.list().then((categories) => {
+            this.dataSource = categories;
+          });
+        });
       }
     });
   }

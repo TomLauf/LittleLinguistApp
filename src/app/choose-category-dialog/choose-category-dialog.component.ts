@@ -33,7 +33,9 @@ export class ChooseCategoryDialogComponent implements OnInit {
     private router: Router
   ) {}
   ngOnInit(): void {
-    this.categories = this.categoryManagementService.list();
+    this.categoryManagementService.list().then((categories) => {
+      this.categories = categories;
+    });
   }
   gameName = this.game.GameName;
   checkGameReady() {
@@ -50,7 +52,7 @@ export class ChooseCategoryDialogComponent implements OnInit {
   playGame() {
     if (this.game != undefined && this.selectedCategory != undefined) {
       const gameURL = this.game.GameURL;
-      const category = this.selectedCategory.categoryId;
+      const category = this.selectedCategory.id;
       this.router.navigate([gameURL, category]);
     }
   }

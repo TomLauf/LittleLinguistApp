@@ -1,11 +1,4 @@
 <app-game-header></app-game-header>
-<div>
-  <mat-form-field appearance="outline">
-    <mat-label>Category Id</mat-label>
-    <input matInput disabled value="{{ currentCategory.categoryId }}" />
-  </mat-form-field>
-</div>
-
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
   <ng-container matColumnDef="EnglishWord">
     <th mat-header-cell *matHeaderCellDef>English Word</th>

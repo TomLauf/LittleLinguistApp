@@ -2,7 +2,7 @@ import { Language } from './Language';
 import { WordsPair } from './WordsPair';
 
 export class WordCategory {
-  public categoryId: string;
+  public id: string;
   categoryName: string;
   lastUpdate = new Date();
   originLanguage: Language;
@@ -10,12 +10,12 @@ export class WordCategory {
   words: WordsPair[] = [];
 
   constructor(
-    categoryId: string,
+    id: string,
     categoryName: string,
     originLanguage: Language,
     translatedLanguage: Language
   ) {
-    this.categoryId = categoryId;
+    this.id = id;
     this.categoryName = categoryName;
     this.originLanguage = originLanguage;
     this.translatedLanguage = translatedLanguage;

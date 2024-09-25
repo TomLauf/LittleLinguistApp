@@ -1,18 +1,18 @@
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-  <ng-container matColumnDef="CategoryName">
+  <ng-container matColumnDef="categoryName">
     <th mat-header-cell *matHeaderCellDef>Category Name</th>
-    <td mat-cell *matCellDef="let element">{{ element.CategoryName }}</td>
+    <td mat-cell *matCellDef="let element">{{ element.categoryName }}</td>
   </ng-container>
 
   <ng-container matColumnDef="NumOfWords">
     <th mat-header-cell *matHeaderCellDef>No. Of Words</th>
-    <td mat-cell *matCellDef="let element">{{ element.Words.length }}</td>
+    <td mat-cell *matCellDef="let element">{{ element.words.length }}</td>
   </ng-container>
 
-  <ng-container matColumnDef="LastUpdate">
+  <ng-container matColumnDef="lastUpdate">
     <th mat-header-cell *matHeaderCellDef>Last Update</th>
     <td mat-cell *matCellDef="let element">
-      {{ element.LastUpdate | date : "dd/MM/yyyy" }}
+      {{ element.lastUpdate | date : "dd/MM/yyyy" }}
     </td>
   </ng-container>
 
@@ -20,7 +20,7 @@
     <th mat-header-cell *matHeaderCellDef>Actions</th>
     <td mat-cell *matCellDef="let element">
       {{ element.Actions }}
-      <button mat-icon-button [routerLink]="['/Category/', element.CategoryId]">
+      <button mat-icon-button [routerLink]="['/Category/', element.id]">
         <mat-icon>edit</mat-icon>
       </button>
       <button mat-icon-button (click)="deleteCategory(element)">
