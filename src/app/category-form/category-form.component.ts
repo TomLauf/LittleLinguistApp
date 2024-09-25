@@ -37,14 +37,13 @@ export class CategoryFormComponent {
     private categoryManagementService: CategoryManagementService,
     private activatedRoute: ActivatedRoute,
     private router: Router
-  ) {
+  ) {}
+  ngOnInit(): void {
     const id = this.activatedRoute.snapshot.paramMap.get('categoryId');
 
     if (id != null) {
       this.categoryManagementService.get(id).then((category) => {
         if (category) {
-          console.log(category);
-
           this.currentCategory = category;
         }
       });
