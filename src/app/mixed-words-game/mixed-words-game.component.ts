@@ -140,7 +140,7 @@ export class MixedWordsGameComponent {
       this.isGameOn = false;
       if (this.category)
         await this.gameResultService.addGameResult(
-          new GameResult('', this.category.id, 'Mixed-Words', this.points)
+          new GameResult('', this.category.id, 'Mixed Words', this.points)
         );
     }
   }

@@ -174,7 +174,7 @@ export class SortGameComponent {
       this.isGameOn = false;
       if (this.currentCategory)
         await this.gameResultService.addGameResult(
-          new GameResult('', this.currentCategory.id, 'Sort', this.points)
+          new GameResult('', this.currentCategory.id, 'Sort Words', this.points)
         );
     }
   }

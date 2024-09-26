@@ -12,4 +12,27 @@
   </mat-card>
 </div>
 
-<header class="dashboard-header">Monthly Challenge</header>
+<div class="challlengeAndStrike">
+  <div class="header-container">
+    <header class="dashboard-header challenge-header">Monthly Challenge</header>
+    <header class="dashboard-header strike-header">Days Strike</header>
+  </div>
+  <div class="cards-container">
+    <mat-card
+      class="dashboard-card"
+      appearance="outlined"
+      *ngFor="let i of challenge"
+    >
+      <img mat-card-image [src]="i.statIcon" alt="Icon" />
+      <mat-card-content class="value">{{ i.value }}</mat-card-content>
+      <mat-card-title class="dashboard-card-title">{{ i.name }}</mat-card-title>
+    </mat-card>
+    <mat-card class="dashboard-card" appearance="outlined">
+      <img mat-card-image [src]="strike.statIcon" alt="Icon" />
+      <mat-card-content class="value">{{ strike.value }}</mat-card-content>
+      <mat-card-title class="dashboard-card-title">{{
+        strike.name
+      }}</mat-card-title>
+    </mat-card>
+  </div>
+</div>

@@ -26,7 +26,6 @@ export const gameResultConverter = {
       data['numOfPoints']
     );
     gameResult.date = data['date'].toDate();
-
     return gameResult;
   },
 };

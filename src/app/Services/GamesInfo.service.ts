@@ -8,7 +8,7 @@ export class GamesInfoService {
   private games: GameProfile[] = [
     new GameProfile(
       1,
-      'Translate Game',
+      'Translate Words',
       'Translate words and phrases from Hebrew to English.',
       'TranslateGame',
       'assets/game-pics/translateWordsPic.png',

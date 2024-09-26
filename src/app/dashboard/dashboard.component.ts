@@ -17,6 +17,8 @@ import { WordCategory } from '../shared/model/WordCategory';
 })
 export class DashboardComponent implements OnInit {
   public stats: GameStats[] = [];
+  public challenge: GameStats[] = [];
+  public strike: GameStats = new GameStats('', '', '');
 
   constructor(
     private gameResultService: GameResultService,
@@ -28,6 +30,7 @@ export class DashboardComponent implements OnInit {
       this.categoryManagementService.list().then((categories) => {
         const stats: GameStats[] = [];
         const averages = this.findHighestAndLowestAverages(data);
+        const challenge: GameStats[] = [];
 
         stats.push(
           new GameStats(
@@ -93,8 +96,51 @@ export class DashboardComponent implements OnInit {
             'assets/dashboard-icons/precent-category-learnt.png'
           )
         );
+        challenge.push(
+          new GameStats(
+            'games played this month',
+            this.gamesPlayedCurrentMonth(data).toString(),
+            'assets/dashboard-icons/challenge.png'
+          )
+        );
+
+        const gamesLeft = this.gamesLeftForChallengeComplete(data);
+
+        if (gamesLeft > 0) {
+          challenge.push(
+            new GameStats(
+              'more games to complete the challenge',
+              gamesLeft.toString(),
+              'assets/dashboard-icons/games-left.png'
+            )
+          );
+        } else {
+          challenge.push(
+            new GameStats(
+              '',
+              'Hurray! Challenge completed!',
+              'assets/dashboard-icons/challenge-complete.png'
+            )
+          );
+        }
+
+        const daysStrike = this.daysStrike(data);
+        if (daysStrike > 0) {
+          this.strike = new GameStats(
+            'days of playing games in a row! Keep it up!',
+            daysStrike.toString(),
+            'assets/dashboard-icons/days-streak.png'
+          );
+        } else {
+          this.strike = new GameStats(
+            'Start your streak by playing games!',
+            '',
+            'assets/dashboard-icons/start-streak.png'
+          );
+        }
 
         this.stats = stats;
+        this.challenge = challenge;
       });
     });
   }
@@ -218,5 +264,33 @@ export class DashboardComponent implements OnInit {
     }
 
     return Math.floor((numOfPerfectScores / data.length) * 100);
+  }
+
+  gamesPlayedCurrentMonth(data: GameResult[]): number {
+    const now = new Date();
+    const firstDayOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
+    let gamesPlayedCurrentMonth = 0;
+
+    for (const game of data) {
+      if (game.date > firstDayOfMonth) {
+        gamesPlayedCurrentMonth++;
+      }
+    }
+
+    return gamesPlayedCurrentMonth;
+  }
+
+  gamesLeftForChallengeComplete(data: GameResult[]): number {
+    return 20 - this.gamesPlayedCurrentMonth(data);
+  }
+
+  daysStrike(data: GameResult[]): number {
+    // data.sort((a, b) => new Date(b) - new Date(a));
+    // const daysStrike = 0;
+    // const today =new Date();
+    // const day = new Date(today)
+    // while()
+    // return daysStrike;
+    return 30 - this.gamesPlayedCurrentMonth(data); //not real, just for html  - need to fix
   }
 }

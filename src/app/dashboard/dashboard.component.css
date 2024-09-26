@@ -1,5 +1,23 @@
+.header-container {
+  display: flex;
+  width: 90%;
+  margin: 0 auto;
+  margin-bottom: 1em;
+}
+
 .dashboard-header {
   font-size: 2rem;
+  flex: 1;
+  text-align: center;
+}
+
+.challenge-header {
+  flex: 2;
+  text-align: center;
+}
+
+.strike-header {
+  flex: 1;
   text-align: center;
 }
 
@@ -13,6 +31,7 @@
   margin-top: 1em;
   margin-bottom: 1em;
   gap: 1em;
+  cursor: default;
 }
 
 .dashboard-card {
@@ -21,6 +40,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  transition: box-shadow 0.1s ease;
+}
+
+.dashboard-card:hover {
+  box-shadow: 0 0 10px floralwhite, 0 0 20px #add8e6;
 }
 
 .card-content {
