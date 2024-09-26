@@ -1,14 +1,15 @@
-<header class="dashboard-header">Your Learnings:</header>
-<div class="dashboard-cards-container">
+<div class="cards-container">
   <mat-card
     class="dashboard-card"
     appearance="outlined"
     *ngFor="let stat of stats"
   >
-    <mat-card-content>{{ stat.value }}</mat-card-content>
-    <br />
+    <img mat-card-image [src]="stat.statIcon" alt="Icon" />
+    <mat-card-content class="value">{{ stat.value }}</mat-card-content>
     <mat-card-title class="dashboard-card-title">{{
       stat.name
     }}</mat-card-title>
   </mat-card>
 </div>
+
+<header class="dashboard-header">Monthly Challenge</header>

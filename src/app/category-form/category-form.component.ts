@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -25,7 +25,7 @@ import { CategoryManagementService } from '../Services/category-management.servi
   templateUrl: './category-form.component.html',
   styleUrl: './category-form.component.css',
 })
-export class CategoryFormComponent {
+export class CategoryFormComponent implements OnInit {
   currentCategory: WordCategory = new WordCategory(
     '',
     '',

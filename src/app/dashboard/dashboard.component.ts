@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { RouterModule } from '@angular/router';
 import { GameStats } from '../shared/model/GameStats';
@@ -15,7 +15,7 @@ import { WordCategory } from '../shared/model/WordCategory';
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css',
 })
-export class DashboardComponent {
+export class DashboardComponent implements OnInit {
   public stats: GameStats[] = [];
 
   constructor(
@@ -30,41 +30,67 @@ export class DashboardComponent {
         const averages = this.findHighestAndLowestAverages(data);
 
         stats.push(
-          new GameStats('Points', this.sumNumberOfPoints(data).toString())
-        );
-        stats.push(
-          new GameStats('Games', this.amountOfGamesPlayed(data).toString())
-        );
-        stats.push(new GameStats('Highest Score Game', averages.highest));
-        stats.push(new GameStats('Lowest Score Game', averages.lowest));
-        stats.push(
           new GameStats(
-            'Categories Not Learnt',
-            this.countCategoriesNotPlayed(data, categories).toString()
+            'points earned',
+            this.sumNumberOfPoints(data).toString(),
+            'assets/dashboard-icons/points.png'
           )
         );
         stats.push(
           new GameStats(
-            'Categories Learnt',
-            this.countCategoriesPlayed(data).toString()
+            'games played',
+            this.amountOfGamesPlayed(data).toString(),
+            'assets/dashboard-icons/games-played.png'
           )
         );
         stats.push(
           new GameStats(
-            'Most Played Category',
-            this.mostPlayedCategory(data, categories).toString()
+            'of games have a perfect score',
+            this.perfectScoreGamesPercentage(data).toString() + '%',
+            'assets/dashboard-icons/perfect-score.png'
           )
         );
         stats.push(
           new GameStats(
-            'Categories Learnt Percentage',
-            this.categoriesLearntPercentage(data, categories).toString() + '%'
+            'has the highest average score',
+            averages.highest + ' game',
+            'assets/dashboard-icons/highest-score.png'
           )
         );
         stats.push(
           new GameStats(
-            'Perfect Score Games Percentage',
-            this.perfectScoreGamesPercentage(data).toString() + '%'
+            'has the lowest average score',
+            averages.lowest + ' game',
+            'assets/dashboard-icons/lowest-score.png'
+          )
+        );
+        stats.push(
+          new GameStats(
+            'is the most played category',
+            this.mostPlayedCategory(data, categories).toString(),
+            'assets/dashboard-icons/category.png'
+          )
+        );
+        stats.push(
+          new GameStats(
+            'categories learned',
+            this.countCategoriesPlayed(data).toString(),
+            'assets/dashboard-icons/category-learnt.png'
+          )
+        );
+        stats.push(
+          new GameStats(
+            'categories not learned',
+            this.countCategoriesNotPlayed(data, categories).toString(),
+            'assets/dashboard-icons/category-not-learnt.png'
+          )
+        );
+
+        stats.push(
+          new GameStats(
+            'of categories learned',
+            this.categoriesLearntPercentage(data, categories).toString() + '%',
+            'assets/dashboard-icons/precent-category-learnt.png'
           )
         );
 
